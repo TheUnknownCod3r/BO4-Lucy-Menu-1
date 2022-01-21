@@ -17,7 +17,6 @@
 #include scripts\zm_common\zm_pack_a_punch.gsc;
 #include scripts\zm_common\zm_weapons.gsc;
 #include scripts\core_common\aat_shared.gsc;
-#include scripts\zm\zm_towers_main_quest.gsc;
 #include scripts\zm_common\zm_utility.gsc;
 #include scripts\zm_common\zm_perks.gsc;
 #include scripts\zm_common\zm_magicbox.gsc;

@@ -23,8 +23,9 @@ UnlimitedAmmo(player)
 
 BO4_GiveGun(weapon, player)
 {
-    player giveWeapon(weapon);
-    player switchToWeapon(weapon);
+    weap = getweapon(weapon);
+    player giveWeapon(weap);
+    player switchToWeapon(weap);
 }
 
 Clone()
@@ -574,51 +575,6 @@ bo4_CamoGiver(Camo)
     Weapon = self GetCurrentWeapon();
     self TakeWeapon(Weapon);
     self GiveWeapon(Weapon, self CalcWeaponOptions(Int(Camo), 1, 1, true, true, true, true));
-}
-
-BO4PaPUnlock()
-{
-    level flag::set("zm_towers_pap_quest_completed");
-    level flag::set("zm_towers_pap_quest_sentinel_artifact_exploded");
-    wait .5;
-    mdl_sentinel_artifact = getent("mdl_pap_quest_sentinel_artifact", "targetname");
-    mdl_sentinel_artifact delete();
-    wait .5;
-    a_mdl_pap_room_debris_clip = getentarray("mdl_pap_room_debris_clip", "targetname");
-    foreach(mdl_pap_room_debris_clip in a_mdl_pap_room_debris_clip)
-    {
-        mdl_pap_room_debris_clip connectpaths();
-        mdl_pap_room_debris_clip delete();
-    }
-
-    wait .5;
-	var_10761775 = getent("t_pap_quest_place_head", "targetname");
-	var_10761775 delete();
-
-	var_8a3d82fc = getentarray("script_brush_lgt_pap_door", "targetname");
-	foreach(a_clip in var_8a3d82fc)
-	{
-		a_clip delete();
-	}
-	exploder::exploder("exp_lgt_pap");
-	level flag::set("zm_towers_pap_quest_sentinel_artifact_exploded");
-    wait .5;
-
-    var_3075677 = getentarray("mdl_pap_quest_head", "targetname");
-	foreach(mdl_head in var_3075677)
-	{
-		mdl_head flag::clear(#"hash_26125a3306681e2");
-		mdl_head delete();
-	}
-
-    level flag::set("connect_pap_room_to_danu_ra_tunnel");
-    level flag::set("connect_pap_room_to_odin_zeus_tunnel");
-    wait .5;
-
-    var_f7afe1a0 = getent("sarcophagus_destroyed", "targetname");
-	var_f7afe1a0 delete();
-
-    self iPrintLnBold("PaP Open, The outer wall will still appear but you can walk through it - WIP");
 }
 
 PSpeed(player)

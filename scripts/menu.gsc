@@ -109,8 +109,8 @@ MenuOptionsPlayer(menu, player)
 
         case "Score Menu":
             self addMenu(menu, "Score");
-                self addOpt("Max Points", &PlayerGiveScore, player, 4000000);
-                self addOpt("Take Points", &PlayerTakeScore, player, 4000000);
+                self addOpt("Max Points", &PlayerGiveScore, 4000000, player);
+                self addOpt("Take Points", &PlayerTakeScore, 4000000, player);
                 self addOptIncSlider("Add Points", &PlayerGiveScore, 0, 0, 1000000, 10000, player);
                 self addOptIncSlider("Take Points", &PlayerTakeScore, 0, 0, 1000000, 10000, player);
             break;
@@ -125,7 +125,6 @@ MenuOptionsPlayer(menu, player)
             self addOpt("Spawn Luna Wolf", &LunaWolf);
             self addOpt("Add Bot", &bo4_AddBotsToGame);
             self addOpt("Open All Doors", &bo4_OpenTheDoors);
-            self addOpt("Unlock PaP", &BO4PaPUnlock);
             self addOpt("Show All Boxes", &ShowAllBoxes);
             self addOptIncSlider("Round: ", &Round999, 0, 0, 300, 1);
             self addOpt("Spawn Big Machine", &ModelSpawnTest);
