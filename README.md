@@ -1,10 +1,10 @@
 # BO4 LUCY MENU
-Lucy Menu is a free open source Call of Duty Black Ops 4 GSC Mod Menu, It currently is set only to work on IX But that will change in the future. Since the menu is open source you can do whatever you want with it!
+Lucy Menu is a free open source Call of Duty Black Ops 4 GSC Mod Menu, It now works on all maps!. Since the menu is open source you can do whatever you want with it!
 
 ## HOW TO INSTALL
 Step 1 -> Watch and follow along this youtube video to correctly install the injector and learn how to inject: https://youtu.be/AGcMTisF6iA
 
-Step 2 -> Download the files here on github (https://github.com/G1llam/BO4-Lucy-Menu)
+Step 2 -> Download the files here on github (https://github.com/MrFawkes1337/BO4-Lucy-Menu)
 
 Step 3 -> Launch BO4 and go to zombies then go into a solo IX pre game lobby and Inject the menu after that start IX
 
@@ -12,6 +12,12 @@ Step 3 -> Launch BO4 and go to zombies then go into a solo IX pre game lobby and
 
 ## UPDATES
 
+==== Version 1.2.2-Unofficial ====
+ - Fixed Weapons Menu not working
+ - Fixed Score Options causing errors
+ - removed IX Limitation
+ 
+ 
 ==== Version 1.2.1 ====
  - Added ability to revive yourself
  - Alter Menu options, changed them to int sliders to make the source code cleaner
@@ -36,4 +42,5 @@ Step 3 -> Launch BO4 and go to zombies then go into a solo IX pre game lobby and
 
 ## CREDITS
 Gillam,
-Sinful
+Sinful,
+MrFawkes1337
