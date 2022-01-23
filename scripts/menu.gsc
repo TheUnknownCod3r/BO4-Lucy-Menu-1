@@ -11,13 +11,16 @@ runMenuIndex(menu)
             self addMenu(menu, level.menuName);
             if(self getVerification() > 0)
             {
-                self addOpt("Personal Menu", &newMenu, "Personal Menu" + self GetEntityNumber());
+                self addOpt("Basic Modifications", &newMenu, "Personal Menu" + self GetEntityNumber());
                 self addOpt("Fun Menu", &newMenu, "Fun Menu");
+                self addOpt("Elixir Menu", &newMenu, "Elixir Menu");
                 self addOpt("Weapon Menu", &newMenu, "Weapon Menu");
                 self addOpt("Powerups Menu", &newMenu, "Powerups Menu");
                 self addOpt("Zombie Menu", &newMenu, "Zombie Menu");
                 self addOpt("Mystery Box Menu", &newMenu, "Mystery Box Menu");
                 self addOpt("Account Menu", &newMenu, "Account Menu");
+                self addOpt("Map Selection", &newMenu, "Map Selection");
+                self addOpt("Teleport Menu", &newMenu, "Teleport Menu");
                 if(self getVerification() > 1)
                 {
                     if(self getVerification() > 2)
@@ -27,12 +30,19 @@ runMenuIndex(menu)
                             if(self IsHost())
                                 self addOpt("Host Menu", &newMenu, "Host Menu");
                                 self addOpt("Player Menu", &newMenu, "Players");
+                                self addOpt("All Players Options", &newMenu, "AllClient");
                         }
                     }
                 }
             }
             break;
-
+        case "AllClient":
+            self addMenu(menu, "All Client Options");
+                self addOpt("All God Mode");
+                self addOpt("All Unlimited Ammo");
+                self addOpt("All Max Points");
+                self addOpt("Give Everyone All Perks");
+        break;
         case "Host Menu":
             self addMenu(menu, "Host Menu");
                 self addOptBool(level.BO4NoFallD, "No Fall", &BO4NoFallDam);
@@ -40,8 +50,10 @@ runMenuIndex(menu)
                 self addOptBool(level.SuperSpeed, "Super Speed", &SuperSpeed);
                 self addoptBool(level.B4Gravity, "Low Gravity", &B4Gravity);
                 self addOpt("Anti Join", &AntiJoin);
+                self addOpt("Hud Test", &TestHud);
                 self addOptBool(self.AntiQuit, "Anti Quit", &AntiQuit);
                 self addOpt("Exit Level", &PlayerExitLevel);
+                self addOpt("Print Coords", &BO4OriginPrint);
                 self addOpt("Restart Map", &RestartMap);
             break;
         case "Players":
@@ -93,7 +105,7 @@ MenuOptionsPlayer(menu, player)
     switch(newmenu)
     {
         case "Personal Menu":
-            self addMenu(menu, "Personal Menu");
+            self addMenu(menu, "Basic Modifications");
                 self addOptBool(player.godmode, "God Mode", &Godmode, player);
                 self addOptBool(player.UnlimitedAmmo, "Unlimited Ammo", &UnlimitedAmmo, player);
                 self addOptBool(player.thirdperson, "Third Person", &thirdperson, player);
@@ -106,7 +118,64 @@ MenuOptionsPlayer(menu, player)
                 self addOpt("Score Menu", &newMenu, "Score Menu");
                 self addOpt("Clone", &Clone);
         break;
-
+        case "Elixir Menu":
+            self addMenu(menu, "Elixir Menu");
+            self addOpt("Not Finished Yet", &test);
+            self addOpt("Mega Elixirs", &newMenu, "Mega Elixirs");
+            self addOpt("Common Elixirs", &newMenu, "Common Elixirs");
+        break;
+        case "Mega Elixirs":
+            self addMenu(menu, "Mega Elixirs");
+                self addOpt("Perkaholic");
+                self addOpt("Shopping Free");
+        break;
+        case "Common Elixirs":
+            self addMenu(menu, "Common Elixirs");
+                self addOpt("Anywhere But Here");
+                self addOpt("Nowhere But There");
+        break;
+        case "Map Selection":
+            self addMenu(menu, "Map Selection");
+                self addOpt("IX", &ChangeMap, "zm_towers");
+                self addOpt("Blood Of The Dead", &ChangeMap, "zm_escape");
+                self addOpt("Voyage of Despair", &ChangeMap, "zm_zodt8");
+                self addOpt("Dead of The Night", &ChangeMap, "zm_mansion");
+                self addOpt("Ancient Evil", &ChangeMap, "zm_red");
+                self addOpt("Alpha Omega", &ChangeMap, "zm_white");
+                self addOpt("Classified", &ChangeMap, "zm_office");
+                self addOpt("Tag Der Toten", &ChangeMap, "zm_orange");
+        break;
+        case "Teleport Menu": //Coords, Loc name for iprint
+            self addMenu(menu, "Teleport Menu");
+                if(BO4GetMap() == "IX"){
+                    self addOpt("IX", &test);
+                }
+                else if(BO4GetMap() == "Blood"){
+                    self addOpt("Blood", &test);
+                }
+                else if(BO4GetMap() == "Voyage"){
+                    self addOpt("Voyage", &test);
+                }
+                else if(BO4GetMap() == "Classified"){
+                    self addOpt("Conference Room", &BO4newOrigin, (-911.255, 2531.01, 16.125), "Conference Room");
+                    self addOpt("Main Offices", &BO4newOrigin, (333.581, 2069.82, 16.125), "Main Offices");
+                    self addOpt("War Room Upper Level", &BO4newOrigin, (-1468.32, 2040.02, -303.875), "War Room Upper Level");
+                    self addOpt("War Room Lower Level", &BO4newOrigin, (-317.895, 2114.2, -511.875), "War Room Lower Level");
+                    self addOpt("Laboratories", &BO4newOrigin, (333.581, 2069.82, 16.125), "Laboratories");
+                }
+                else if(BO4GetMap() == "Dead"){
+                    self addOpt("Dead of The Night", &test);
+                }
+                else if(BO4GetMap() == "AE"){
+                    self addOpt("Ancient Evil", &test);
+                }
+                else if(BO4GetMap() == "AO"){
+                    self addOpt("Alpha Omega", &test);
+                }
+                else if(BO4GetMap() == "Tag"){
+                    self addOpt("Tag Der Toten", &test);
+                }
+        break;
         case "Score Menu":
             self addMenu(menu, "Score");
                 self addOpt("Max Points", &PlayerGiveScore, 4000000, player);
@@ -125,9 +194,7 @@ MenuOptionsPlayer(menu, player)
             self addOpt("Spawn Luna Wolf", &LunaWolf);
             self addOpt("Add Bot", &bo4_AddBotsToGame);
             self addOpt("Open All Doors", &bo4_OpenTheDoors);
-            self addOpt("Show All Boxes", &ShowAllBoxes);
-            self addOptIncSlider("Round: ", &Round999, 0, 0, 300, 1);
-            self addOpt("Spawn Big Machine", &ModelSpawnTest);
+            self addOptIncSlider("Edit Round: ", &Round999, 0, 0, 300, 1);   
             self addOpt("Save Location", &SaveLocation, 0);
             self addOpt("Load Location", &SaveLocation, 1);
         break;
@@ -137,12 +204,20 @@ MenuOptionsPlayer(menu, player)
             self addOpt("Weapon Selector", &newMenu, "Weapon Selector");
             self addOpt("Camo Selector", &newMenu, "Camo Selector");
             self addOpt("Upgrade Weapon", &UpgradeWeapon);
+            self addOpt("Pack a Punch Effects", &newMenu, "Pack a Punch Effects");
             self addOpt("Drop Weapon", &DropWeapon);
             self addOpt("Take All Weapons", &TakeWeapons);
             self addOpt("Take Current Weapon", &TakeCurrentWeapon);
             
         break;
-
+        case "Pack a Punch Effects":
+            self addMenu(menu, "Pack a Punch Effects");
+            self addOpt("Brain Rot", &acquireaat, "zm_aat_brain_decay");
+            self addOpt("Fire Burst", &acquireaat, "zm_aat_plasmatic_burst");
+            self addOpt("Kill o Watt", &acquireaat, "zm_aat_kill_o_watt");
+            self addOpt("Cryofreeze", &acquireaat, "zm_aat_frostbite");
+            self addOpt("Remove Effect", &RemoveEff, self GetCurrentWeapon());
+        break;
         case "Camo Selector":
         self addMenu(menu, "Camo Selector");
             for(a=0;a<96;a++)
@@ -152,70 +227,71 @@ MenuOptionsPlayer(menu, player)
         case "Weapon Selector":
             self addMenu(menu, "Weapon Selector");
             self addOpt("^0 == Assault Rifles ==");
-            self addOpt("Give ICR-7", &BO4_GiveGun, "ar_accurate_t8");
-            self addOpt("Give Maddox RFB", &BO4_GiveGun, "ar_fastfire_t8");
-            self addOpt("Give Rampart 17", &BO4_GiveGun, "ar_damage_t8");
-            self addOpt("Give Vapr-XKG", &BO4_GiveGun, "ar_stealth_t8");
-            self addOpt("Give KN-57", &BO4_GiveGun, "ar_modular_t8");
-            self addOpt("Give Hitchcock M9", &BO4_GiveGun, "ar_mg1909_t8");
+            self addOpt("Give ICR-7", &BO4GiveWeapon, "ar_accurate_t8");
+            self addOpt("Give Maddox RFB", &BO4GiveWeapon, "ar_fastfire_t8");
+            self addOpt("Give Rampart 17", &BO4GiveWeapon, "ar_damage_t8");
+            self addOpt("Give Vapr-XKG", &BO4GiveWeapon, "ar_stealth_t8");
+            self addOpt("Give KN-57", &BO4GiveWeapon, "ar_modular_t8");
+            self addOpt("Give Hitchcock M9", &BO4GiveWeapon, "ar_mg1909_t8");
 
             self addOpt("^0 == Submachine Guns ==");
-            self addOpt("Give MX9", &BO4_GiveGun, "smg_standard_t8");
-            self addOpt("Give Saug 9mm", &BO4_GiveGun, "smg_handling_t8");
-            self addOpt("Give Spitfire", &BO4_GiveGun, "smg_fastfire_t8");
-            self addOpt("Give Cordite", &BO4_GiveGun, "smg_capacity_t8");
-            self addOpt("Give GKS", &BO4_GiveGun, "smg_accurate_t8");
-            self addOpt("Give Escargot", &BO4_GiveGun, "smg_drum_pistol_t8");
+            self addOpt("Give MX9", &BO4GiveWeapon, "smg_standard_t8");
+            self addOpt("Give Saug 9mm", &BO4GiveWeapon, "smg_handling_t8");
+            self addOpt("Give Spitfire", &BO4GiveWeapon, "smg_fastfire_t8");
+            self addOpt("Give Cordite", &BO4GiveWeapon, "smg_capacity_t8");
+            self addOpt("Give GKS", &BO4GiveWeapon, "smg_accurate_t8");
+            self addOpt("Give Escargot", &BO4GiveWeapon, "smg_drum_pistol_t8");
 
             self addOpt("^0 == Tactical Rifles ==");
-            self addOpt("Give Auger DMR", &BO4_GiveGun, "tr_powersemi_t8");
-            self addOpt("Give Swordfish", &BO4_GiveGun, "tr_longburst_t8");
-            self addOpt("Give ABR 223", &BO4_GiveGun, "tr_midburst_t8");
+            self addOpt("Give Auger DMR", &BO4GiveWeapon, "tr_powersemi_t8");
+            self addOpt("Give Swordfish", &BO4GiveWeapon, "tr_longburst_t8");
+            self addOpt("Give ABR 223", &BO4GiveWeapon, "tr_midburst_t8");
 
             self addOpt("^0 == Lightmachine Guns ==");
-            self addOpt("Give VKM 750", &BO4_GiveGun, "lmg_heavy_t8");
-            self addOpt("Give Hades", &BO4_GiveGun, "lmg_spray_t8");
-            self addOpt("Give Titan", &BO4_GiveGun, "lmg_standard_t8");
+            self addOpt("Give VKM 750", &BO4GiveWeapon, "lmg_heavy_t8");
+            self addOpt("Give Hades", &BO4GiveWeapon, "lmg_spray_t8");
+            self addOpt("Give Titan", &BO4GiveWeapon, "lmg_standard_t8");
 
             self addOpt("^0 == Sniper Rifles ==");
-            self addOpt("Give Outlaw", &BO4_GiveGun, "sniper_fastrechamber_t8");
-            self addOpt("Give Paladin HB50", &BO4_GiveGun, "sniper_powerbolt_t8");
-            self addOpt("Give SDM", &BO4_GiveGun, "sniper_powersemi_t8");
-            self addOpt("Give Koshka", &BO4_GiveGun, "sniper_quickscope_t8");
+            self addOpt("Give Outlaw", &BO4GiveWeapon, "sniper_fastrechamber_t8");
+            self addOpt("Give Paladin HB50", &BO4GiveWeapon, "sniper_powerbolt_t8");
+            self addOpt("Give SDM", &BO4GiveWeapon, "sniper_powersemi_t8");
+            self addOpt("Give Koshka", &BO4GiveWeapon, "sniper_quickscope_t8");
 
             self addOpt("^0 == Pistols ==");
-            self addOpt("Give RK 7 Garrison", &BO4_GiveGun, "pistol_burst_t8");
-            self addOpt("Give Mozu", &BO4_GiveGun, "pistol_revolver_t8");
-            self addOpt("Give Strife", &BO4_GiveGun, "pistol_standard_t8");
-            self addOpt("Give Welling", &BO4_GiveGun, "pistol_topbreak_t8");
+            self addOpt("Give RK 7 Garrison", &BO4GiveWeapon, "pistol_burst_t8");
+            self addOpt("Give Mozu", &BO4GiveWeapon, "pistol_revolver_t8");
+            self addOpt("Give Strife", &BO4GiveWeapon, "pistol_standard_t8");
+            self addOpt("Give Welling", &BO4GiveWeapon, "pistol_topbreak_t8");
 
             self addOpt("^0 == Shotguns ==");
-            self addOpt("Give Mog 12", &BO4_GiveGun, "shotgun_pump_t8");
-            self addOpt("Give SG12", &BO4_GiveGun, "shotgun_pump_t8");
-            self addOpt("Give Trenchgun", &BO4_GiveGun, "shotgun_pump_t8");
+            self addOpt("Give Mog 12", &BO4GiveWeapon, "shotgun_pump_t8");
+            self addOpt("Give SG12", &BO4GiveWeapon, "shotgun_pump_t8");
+            self addOpt("Give Trenchgun", &BO4GiveWeapon, "shotgun_pump_t8");
 
             self addOpt("^0 == Specials ==");
-            self addOpt("Give Hellion Salvo", &BO4_GiveGun, "launcher_standard_t8");
-            self addOpt("Give Minigun", &BO4_GiveGun, "minigun");
+            self addOpt("Give Hellion Salvo", &BO4GiveWeapon, "launcher_standard_t8");
+            self addOpt("Give Minigun", &BO4GiveWeapon, "minigun");
         break; 
 
         case "Powerups Menu":
             self addMenu(menu, "Powerups");
-            self addOpt("Max Ammo", &MaxAmmo);
-            self addOpt("Fire Sale", &FireSale);
-            self addOpt("Bonus Points", &BonusPoints);
-            self addOpt("Free Perk", &FreePerk);
-            self addOpt("Nuke", &Nuke);
-            self addOpt("Hero Weapon", &HeroWeapon);
-            self addOpt("Insta kill", &Instakill);
-            self addOpt("Double Points", &DoublePoints);
-            self addOpt("Carpenter", &Carpenter);
+            self addOpt("Max Ammo", &GivePowerup, "full_ammo");
+            self addOpt("Fire Sale", &GivePowerup, "fire_sale");
+            self addOpt("Bonus Points", &GivePowerup, "bonus_points_player");
+            self addOpt("Free Perk", &GivePowerup, "free_perk");
+            self addOpt("Nuke", &GivePowerup, "nuke");
+            self addOpt("Hero Weapon", &GivePowerup, "hero_weapon_power");
+            self addOpt("Insta kill", &GivePowerup, "insta_kill");
+            self addOpt("Double Points", &GivePowerup, "double_points");
+            self addOpt("Carpenter", &GivePowerup, "carpenter");
             break;
 
         case "Zombie Menu":
             self addMenu(menu, "Zombie Menu");
             self addOpt("Kill All Zombies", &KillAllZombies, player);
             self addOpt("Teleport Zombies", &TeleportZombies);
+            self addOptBool(self.FloatingZombies, "Floating Zombies", &FloatingZombies);
             self addOptBool(self.ZombiePos, "Spawn Zombies In Front Of You", &StartZombiePosistion);
         break;
 
@@ -224,6 +300,7 @@ MenuOptionsPlayer(menu, player)
             self addOpt("Price", &newMenu, "Price Menu");
             self addOpt("Teleport To Chest", &TpToChest);
             self addOpt("Freeze Box Position", &BO4FreezeBox);
+            self addOpt("Show All Mystery Boxes", &ShowAllBoxes);
         break;
 
         case "Price Menu":

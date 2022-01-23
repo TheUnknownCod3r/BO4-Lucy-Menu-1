@@ -9,10 +9,12 @@
 #include scripts\core_common\hud_shared;
 #include scripts\core_common\array_shared;
 #include scripts\core_common\flag_shared;
+#include scripts\zm_common\gametypes\dev.gsc;
 #include scripts\zm_common\zm_score.gsc;
 #include scripts\zm_common\util.gsc;
 #include scripts\zm_common\zm_powerups.gsc;
 #include scripts\zm_common\zm_stats.gsc;
+#include scripts\zm_common\zm_power.gsc;
 #include scripts\zm_common\zm_pack_a_punch_util.gsc;
 #include scripts\zm_common\zm_pack_a_punch.gsc;
 #include scripts\zm_common\zm_weapons.gsc;
@@ -32,6 +34,7 @@
 #include scripts\core_common\match_record.gsc;
 #include scripts\zm_common\zm_laststand.gsc;
 #include scripts\core_common\laststand_shared.gsc;
+#include scripts\zm_common\zm_bgb.gsc;
 
 #namespace clientids_shared;
 

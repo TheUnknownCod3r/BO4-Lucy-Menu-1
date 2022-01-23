@@ -16,7 +16,7 @@ InitializeVarsPrecaches()
     level.InitializeVarsPrecaches = true;
 
     level.menuName = "Lucy | Free GSC Menu";
-    level.menuDeveloper = "Gillam";
+    level.menuDeveloper = "Gilliam";
     level.AutoVerify = 0;
     level.MenuStatus = StrTok("None, Verified, VIP, Co-Host, Admin, Host, Developer", ",");
     

@@ -23,11 +23,19 @@ UnlimitedAmmo(player)
 
 BO4_GiveGun(weapon, player)
 {
-    weap = getweapon(weapon);
-    player giveWeapon(weap);
-    player switchToWeapon(weap);
+    self giveWeapon(weapon);
+    self switchToWeapon(weapon);
 }
 
+BO4GiveWeapon(weap)
+{
+    weapon = getweapon(weap);
+    self giveWeapon(weapon);
+    wait .1;
+    self giveMaxAmmo(weapon);
+    wait .1;
+    self switchToWeapon(weapon);
+}
 Clone()
 {
     self util::spawn_player_clone(self);
@@ -525,6 +533,10 @@ Stats_HighestReached(score)
     self zm_stats::function_1b763e4("HIGHEST_ROUND_REACHED", score);
 }
 
+TestHud()
+{
+    self dev::set_hudelem("^2This is a Test!", 300,500,1.5,1,0,undefined);
+}
 Stats_MostKills(score)
 {
     self zm_stats::function_1b763e4("kills", score);
@@ -569,6 +581,90 @@ bo4_OpenTheDoors()
     level._doors_done = true;
     self iPrintLnBold("Doors ^2Opened");
 }
+//Start Changes
+test()
+{
+    self iPrintLnBold("Test");
+}
+
+FloatingZombies()
+{
+    if(!isDefined(self.FloatingZombies))
+    {
+        self.FloatingZombies = true;
+        setDvar("phys_gravity", 100);
+        self iPrintLnBold("Newtonian Negation ^2Enabled");
+    }
+    else 
+    {
+        self.FloatingZombies = undefined;
+        setDvar("phys_gravity", 800);
+        self iPrintLnBold("Newtonian Negation ^1Disabled");
+    }
+}
+
+S(Message)
+{
+    self iPrintLnBold(Message);
+}
+
+RemoveEff(weapon)
+{
+    self TakeWeapon(weapon);
+    wait 0.1;
+    self GiveWeapon(weapon);
+}
+
+BO4OriginPrint()
+{
+    current_origin = self.origin;
+    self S("Coords: "+current_origin);
+}
+
+BO4GetMap()
+{
+    if(level.script == "zm_towers") return "IX";//
+    else if(level.script == "zm_escape") return "Blood";//
+    else if(level.script == "zm_red") return "AE";//
+    else if(level.script == "zm_white") return "AO";//
+    else if(level.script == "zm_mansion") return "Dead";//
+    else if(level.script == "zm_orange") return "Tag";
+    else if(level.script == "zm_office") return "Classified";//
+    else if(level.script == "zm_zodt8") return "Voyage";//
+}
+
+ChangeMap(Mapname)
+{
+    self iPrintLnBold("Map Changing To "+Mapname);
+    wait 0.5;
+    setDvar("ls_mapname", Mapname);
+    setDvar("mapname", Mapname);
+    setDvar("party_mapname", Mapname);
+    setDvar("ui_mapname", Mapname);
+    setDvar("ui_currentmap", Mapname);
+    setDvar("ui_previewmap", Mapname);
+    setDvar("ui_showmap", Mapname);
+    map(Mapname);
+}
+GivePowerup(Powerup)
+{
+    self zm_powerups::specific_powerup_drop(Powerup, self.origin, undefined, undefined, undefined, 1);
+}
+
+BO4newOrigin(Coords, Location)
+{
+    if(!isDefined(Location))
+        Location = "Undefined";
+    self SetOrigin(Coords);
+    self S("Teleported To "+Location);
+}
+
+acquireaat(id) {
+    weapon = self getCurrentWeapon();
+    self thread aat::acquire(weapon, id);
+}
+
+//End Changes
 
 bo4_CamoGiver(Camo) 
 {
