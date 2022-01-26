@@ -11,7 +11,7 @@ runMenuIndex(menu)
             self addMenu(menu, level.menuName);
             if(self getVerification() > 0)
             {
-                self addOpt("Basic Modifications", &newMenu, "Personal Menu" + self GetEntityNumber());
+                self addOpt("Personal Menu", &newMenu, "Personal Menu" + self GetEntityNumber());
                 self addOpt("Fun Menu", &newMenu, "Fun Menu");
                 self addOpt("Elixir Menu", &newMenu, "Elixir Menu");
                 self addOpt("Weapon Menu", &newMenu, "Weapon Menu");
@@ -104,7 +104,7 @@ MenuOptionsPlayer(menu, player)
     switch(newmenu)
     {
         case "Personal Menu":
-            self addMenu(menu, "Basic Modifications");
+            self addMenu(menu, "Personal Menu");
                 self addOptBool(player.godmode, "God Mode", &Godmode, player);
                 self addOptBool(player.UnlimitedAmmo, "Unlimited Ammo", &UnlimitedAmmo, player);
                 self addOptBool(player.thirdperson, "Third Person", &thirdperson, player);
