@@ -50,7 +50,6 @@ runMenuIndex(menu)
                 self addOptBool(level.SuperSpeed, "Super Speed", &SuperSpeed);
                 self addoptBool(level.B4Gravity, "Low Gravity", &B4Gravity);
                 self addOpt("Anti Join", &AntiJoin);
-                self addOpt("Hud Test", &TestHud);
                 self addOptBool(self.AntiQuit, "Anti Quit", &AntiQuit);
                 self addOpt("Exit Level", &PlayerExitLevel);
                 self addOpt("Print Coords", &BO4OriginPrint);

@@ -533,10 +533,6 @@ Stats_HighestReached(score)
     self zm_stats::function_1b763e4("HIGHEST_ROUND_REACHED", score);
 }
 
-TestHud()
-{
-    self dev::set_hudelem("^2This is a Test!", 300,500,1.5,1,0,undefined);
-}
 Stats_MostKills(score)
 {
     self zm_stats::function_1b763e4("kills", score);
