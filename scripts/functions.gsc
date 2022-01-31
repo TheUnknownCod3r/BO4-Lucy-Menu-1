@@ -604,6 +604,11 @@ S(Message)
     self iPrintLnBold(Message);
 }
 
+BO4GiveElixir(name) //works for some, not all
+{
+    self thread bgb::function_b7ba7d51(name);
+}
+
 RemoveEff(weapon)
 {
     self TakeWeapon(weapon);

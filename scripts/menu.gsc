@@ -125,8 +125,11 @@ MenuOptionsPlayer(menu, player)
         break;
         case "Mega Elixirs":
             self addMenu(menu, "Mega Elixirs");
-                self addOpt("Perkaholic");
+                self addOpt("Perkaholic", &BO4GiveElixir, "zm_bgb_perkaholic");
                 self addOpt("Shopping Free");
+                self addOpt("Reign Drops", &BO4GiveElixir, "zm_bgb_reign_drops");
+                self addOpt("Immolation Liquidation", &BO4GiveElixir, "zm_bgb_immolation_liquidation");
+                self addOpt("Extra Credit", &BO4GiveElixir, "zm_bgb_extra_credit");
         break;
         case "Common Elixirs":
             self addMenu(menu, "Common Elixirs");
