@@ -66,47 +66,6 @@ PlayerTakeScore(value, player)
     player zm_score::minus_to_player_score(value);
 }
 
-MaxAmmo()
-{
-    self zm_powerups::specific_powerup_drop("full_ammo", self.origin, undefined, undefined, undefined, 1);
-}
-
-FireSale()
-{
-    self zm_powerups::specific_powerup_drop("fire_sale", self.origin, undefined, undefined, undefined, 1);
-}
-
-BonusPoints()
-{
-    self zm_powerups::specific_powerup_drop("bonus_points_player", self.origin, undefined, undefined, undefined, 1);
-}
-
-FreePerk()
-{
-    self zm_powerups::specific_powerup_drop("free_perk", self.origin, undefined, undefined, undefined, 1);
-}
-
-Nuke()
-{
-    self zm_powerups::specific_powerup_drop("nuke", self.origin, undefined, undefined, undefined, 1);
-}
-HeroWeapon()
-{
-    self zm_powerups::specific_powerup_drop("hero_weapon_power", self.origin, undefined, undefined, undefined, 1);
-}
-Instakill()
-{
-    self zm_powerups::specific_powerup_drop("insta_kill", self.origin, undefined, undefined, undefined, 1);
-}
-DoublePoints()
-{
-    self zm_powerups::specific_powerup_drop("double_points", self.origin, undefined, undefined, undefined, 1);
-}
-Carpenter()
-{
-    self zm_powerups::specific_powerup_drop("carpenter", self.origin, undefined, undefined, undefined, 1);
-}
-
 Achievements(player)
 {
     Gillam_Achi = array("zm_office_cold_war", "zm_office_ice", "zm_office_shock", "zm_office_power", "zm_office_strike", "zm_office_office", "zm_office_crawl", "zm_office_gas", "zm_office_pentupagon", "zm_office_everywhere", "zm_red_tragedy","zm_red_follower","zm_red_tribute","zm_red_mountains","zm_red_no_obol","zm_red_sun","zm_red_wind","zm_red_eagle","zm_red_defense","zm_red_gods", "zm_white_shard","zm_white_starting","zm_white_unlock","zm_white_mod","zm_white_trap","zm_white_pap","zm_white_knuckles","zm_white_perk","zm_white_stun","zm_white_roof","zm_trophy_doctor_is_in", "zm_trials_round_30","zm_escape_most_escape","zm_escape_patch_up","zm_escape_hot_stuff","zm_escape_hist_reenact","zm_escape_match_made","zm_escape_west_side","zm_escape_senseless","zm_escape_gat","zm_escape_throw_dog", "zm_orange_ascend","zm_orange_bells","zm_orange_freeze","zm_orange_hounds","zm_orange_totems","zm_orange_pack","zm_orange_secret","zm_orange_power","zm_orange_ziplines","zm_orange_jar","ZM_ZODT8_TRIAL_STEP_1", "ZM_MANSION_ARTIFACT","ZM_MANSION_STAKE","ZM_MANSION_BOARD","ZM_MANSION_BITE","ZM_MANSION_QUICK","ZM_MANSION_ALCHEMICAL","ZM_MANSION_CRAFTING","ZM_MANSION_SHOCKING","ZM_MANSION_CLOCK","ZM_MANSION_SHRINKING", "zm_towers_challenges","zm_towers_get_ww","zm_towers_trap_build","zm_towers_ww_kills","zm_towers_kitty_kitty","zm_towers_dismember","zm_towers_boss_kill","zm_towers_arena_survive","zm_towers_fast_pap", "ZM_ZODT8_ARTIFACT","ZM_ZODT8_STOWAWAY","ZM_ZODT8_DEEP_END","ZM_ZODT8_LITTLE_PACK","ZM_ZODT8_SHORTCUT","ZM_ZODT8_TENTACLE","ZM_ZODT8_STOKING","ZM_ZODT8_ROCK_PAPER","ZM_ZODT8_SWIMMING","zm_trophy_jack_of_all_blades", "zm_trophy_straw_purchase","zm_trophy_perkaholic_relapse","zm_trophy_gold","zm_rush_personal_score","zm_rush_team_score","zm_rush_multiplier_100","mp_trophy_special_issue_weaponry","mp_trophy_special_issue_equipment", "wz_specialist_super_fan","wz_first_win","wz_not_a_fluke","wz_blackout_historian","wz_specialist_super_fan","wz_zombie_fanatic","mp_trophy_battle_tested","mp_trophy_welcome_to_the_club","MP_SPECIALIST_MEDALS","MP_MULTI_KILL_MEDALS", "mp_trophy_vanquisher");
