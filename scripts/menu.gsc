@@ -38,10 +38,10 @@ runMenuIndex(menu)
             break;
         case "AllClient":
             self addMenu(menu, "All Client Options");
-                self addOpt("All God Mode");
-                self addOpt("All Unlimited Ammo");
-                self addOpt("All Max Points");
-                self addOpt("Give Everyone All Perks");
+                self addOpt("All God Mode", &ClientFuncs, "GodMode", undefined);
+                self addOpt("All Unlimited Ammo", &ClientFuncs, "Ammo", undefined);
+                self addOpt("All Max Points", &ClientFuncs, "Points", undefined);
+                self addOpt("Give Everyone All Perks", &ClientFuncs, "Perks", undefined);
         break;
         case "Host Menu":
             self addMenu(menu, "Host Menu");
@@ -105,13 +105,13 @@ MenuOptionsPlayer(menu, player)
     {
         case "Personal Menu":
             self addMenu(menu, "Personal Menu");
-                self addOptBool(player.godmode, "God Mode", &Godmode, player);
-                self addOptBool(player.UnlimitedAmmo, "Unlimited Ammo", &UnlimitedAmmo, player);
-                self addOptBool(player.thirdperson, "Third Person", &thirdperson, player);
-                self addOptBool(player.UnlimitedSprint, "Unlimited Sprint", &UnlimitedSprint, player);
-                self addOptBool(player.NoTarg, "No Target", &notarget, player);
-                self addOptBool(player.promod, "Promod", &ProMod, player);
-                self addOptBool(player.PSpeed, "x2 Speed", &PSpeed, player);
+                self addOptBool(self.godmode, "God Mode", &Godmode);
+                self addOptBool(self.UnlimitedAmmo, "Unlimited Ammo", &UnlimitedAmmo);
+                self addOptBool(self.thirdperson, "Third Person", &thirdperson);
+                self addOptBool(self.UnlimitedSprint, "Unlimited Sprint", &UnlimitedSprint);
+                self addOptBool(self.NoTarg, "No Target", &notarget);
+                self addOptBool(self.promod, "Promod", &ProMod);
+                self addOptBool(self.PSpeed, "x2 Speed", &PSpeed);
                 self addOpt("Revive Yourself", &BO4Rev, player);
                 self addOpt("All Perks", &GiveAllPerks);
                 self addOpt("Score Menu", &newMenu, "Score Menu");
@@ -130,11 +130,12 @@ MenuOptionsPlayer(menu, player)
                 self addOpt("Reign Drops", &BO4GiveElixir, "zm_bgb_reign_drops");
                 self addOpt("Immolation Liquidation", &BO4GiveElixir, "zm_bgb_immolation_liquidation");
                 self addOpt("Extra Credit", &BO4GiveElixir, "zm_bgb_extra_credit");
+                self addOpt("Cache Back", &BO4GiveElixir, "zm_bgb_cache_back");
         break;
         case "Common Elixirs":
             self addMenu(menu, "Common Elixirs");
-                self addOpt("Anywhere But Here");
-                self addOpt("Nowhere But There");
+                self addOpt("Anywhere But Here", &BO4GiveElixir, "zm_bgb_anywhere_but_here");
+                self addOpt("Nowhere But There", &BO4GiveElixir, "zm_bgb_nowhere_but_there");
         break;
         case "Map Selection":
             self addMenu(menu, "Map Selection");

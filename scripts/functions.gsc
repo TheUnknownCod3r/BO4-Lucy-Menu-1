@@ -1,21 +1,21 @@
-Godmode(player)
+Godmode()
 {
-    player.godmode = isDefined(player.godmode) ? undefined : true;
-    if(isDefined(player.godmode))
-        player EnableInvulnerability();
+    self.godmode = isDefined(self.godmode) ? undefined : true;
+    if(isDefined(self.godmode))
+        self EnableInvulnerability();
     else
-        player DisableInvulnerability();
+        self DisableInvulnerability();
 }
 
-UnlimitedAmmo(player)
+UnlimitedAmmo()
 {
-    player.UnlimitedAmmo = isDefined(player.UnlimitedAmmo) ? undefined : true;
-    if(isDefined(player.UnlimitedAmmo))
+    self.UnlimitedAmmo = isDefined(self.UnlimitedAmmo) ? undefined : true;
+    if(isDefined(self.UnlimitedAmmo))
     {
-        while(isDefined(player.UnlimitedAmmo))
+        while(isDefined(self.UnlimitedAmmo))
         {
-            player GiveMaxAmmo(player GetCurrentWeapon());
-            player SetWeaponAmmoClip(player GetCurrentWeapon(), player GetCurrentWeapon().clipsize);
+            self GiveMaxAmmo(self GetCurrentWeapon());
+            self SetWeaponAmmoClip(self GetCurrentWeapon(), self GetCurrentWeapon().clipsize);
             wait .05;
         }
     }
@@ -90,43 +90,43 @@ CompleteActiveContracts(player)
     }
 }
 
-thirdperson(player)
+thirdperson()
 {
-    player.thirdperson = isDefined(player.thirdperson) ? undefined : true;
-    if (isDefined(player.thirdperson))
+    self.thirdperson = isDefined(self.thirdperson) ? undefined : true;
+    if (isDefined(self.thirdperson))
         self setclientthirdperson(1);
     else
         self setclientthirdperson(0);
 }
 
-UnlimitedSprint(player) 
+UnlimitedSprint() 
 {
-    player.UnlimitedSprint = isDefined(player.UnlimitedSprint) ? undefined : true;
-    if (isDefined(player.UnlimitedSprint))
+    self.UnlimitedSprint = isDefined(self.UnlimitedSprint) ? undefined : true;
+    if (isDefined(self.UnlimitedSprint))
     {
-        player setperk("specialty_unlimitedsprint");
-        player iPrintLnBold("Unlimited Sprint ^2Enabled");
+        self setperk("specialty_unlimitedsprint");
+        self iPrintLnBold("Unlimited Sprint ^2Enabled");
     } 
     else 
     {
-        player unsetperk("specialty_unlimitedsprint");
-        player iPrintLnBold("Unlimited Sprint ^1Disabled");
+        self unsetperk("specialty_unlimitedsprint");
+        self iPrintLnBold("Unlimited Sprint ^1Disabled");
     }
 }    
         
-notarget(player)
+notarget()
 {
-    player.NoTarg = isDefined(player.NoTarg) ? undefined : true;
-    if (isDefined(player.NoTarg))
-        player.ignoreme++;
+    self.NoTarg = isDefined(self.NoTarg) ? undefined : true;
+    if (isDefined(self.NoTarg))
+        self.ignoreme++;
     else
-        player.ignoreme--;
+        self.ignoreme--;
 }
 
-ProMod(player)
+ProMod()
 {
-    player.promod = isDefined(player.promod) ? undefined : true;
-    if (isDefined(player.promod))
+    self.promod = isDefined(self.promod) ? undefined : true;
+    if (isDefined(self.promod))
         setdvar(#"cg_fov", 120);
     else
         setdvar(#"cg_fov", 80);
@@ -558,6 +558,28 @@ FloatingZombies()
     }
 }
 
+ClientFuncs(args, val1)
+{
+    foreach(player in level.players)
+    {
+        if (args == "GodMode")
+        {
+            player thread Godmode();
+        }
+        else if(args == "Ammo")
+        {
+            player thread UnlimitedAmmo();
+        }
+        else if (args == "Points")
+        {
+            player thread zm_score::add_to_player_score(40000000);
+        }
+        else if(args == "Perks")
+        {
+            player thread GiveAllPerks();
+        }
+    }
+}
 S(Message)
 {
     self iPrintLnBold(Message);
@@ -566,6 +588,7 @@ S(Message)
 BO4GiveElixir(name) //works for some, not all
 {
     self thread bgb::function_b7ba7d51(name);
+    self thread bgb::give(name);
 }
 
 RemoveEff(weapon)
@@ -633,15 +656,15 @@ bo4_CamoGiver(Camo)
     self GiveWeapon(Weapon, self CalcWeaponOptions(Int(Camo), 1, 1, true, true, true, true));
 }
 
-PSpeed(player)
+PSpeed()
 {
     self endon("disconnect");
     
-    player.PSpeed = isDefined(player.PSpeed) ? undefined : true;
-    if(isDefined(player.PSpeed))
-        player SetMoveSpeedScale(2);
+    self.PSpeed = isDefined(self.PSpeed) ? undefined : true;
+    if(isDefined(self.PSpeed))
+        self SetMoveSpeedScale(2);
     else
-        player SetMoveSpeedScale(1);
+        self SetMoveSpeedScale(1);
 }
 
 GiveAllPerks()
