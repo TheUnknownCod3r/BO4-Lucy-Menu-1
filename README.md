@@ -6,25 +6,28 @@ Step 1 -> Watch and follow along this youtube video to correctly install the inj
 
 Step 2 -> Download the files here on github (https://github.com/MrFawkes1337/BO4-Lucy-Menu)
 
-Step 3 -> Launch BO4 and go to zombies then go into a solo IX pre game lobby and Inject the menu after that start IX
+Step 3 -> Launch BO4 and go to zombies then go into a solo Zombies Pre game lobby, Inject the menu with VS Code, and launch the game. :)
 
 
 
 ## UPDATES
+
+==== Version 1.2.3-Unofficial ====
+ - Added Basic Elixir Menu
+ - cleaned up functions
+ - new Map Selection and Teleports
+ - Fixed menu options for All Clients
 
 ==== Version 1.2.2-Unofficial ====
  - Fixed Weapons Menu not working
  - Fixed Score Options causing errors
  - removed IX Limitation
  
- 
 ==== Version 1.2.1 ====
  - Added ability to revive yourself
  - Alter Menu options, changed them to int sliders to make the source code cleaner
  - Added Complete Active Contracts to account menu
  - Various menu improvements and clean ups 
-
-
 
 ==== Version 1.2 ====
  - Added Unlock All
@@ -34,9 +37,6 @@ Step 3 -> Launch BO4 and go to zombies then go into a solo IX pre game lobby and
  - Can now edit other peoples stats without them needing to download the menu
  - Changed Stats Menu Options To Int Sliders So User Can Pick Their Own Values
  - Removes Issue with Default Project
-
-
-
 
 
 
