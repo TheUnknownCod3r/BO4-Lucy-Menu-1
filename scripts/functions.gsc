@@ -587,10 +587,15 @@ S(Message)
 
 BO4GiveElixir(name) //works for some, not all
 {
-    self thread bgb::function_b7ba7d51(name);
-    self thread bgb::give(name);
+    self thread bgb::function_b7ba7d51(name);//Actually gives instant use elixir like Perkaholic etc, Doesnt work for Shopping Free, Wall Power etc..?
+    self thread bgb::give(name);//gives popup for the Elixir on screen, should work for all
 }
 
+GiveElixir2(name)
+{
+    self thread bgb::function_62f40b0d(name);//Gives Timed Elixir, Works for Shopping free, no timer on screen however
+    self thread bgb::give(name);//Just for elixir popup
+}
 RemoveEff(weapon)
 {
     self TakeWeapon(weapon);

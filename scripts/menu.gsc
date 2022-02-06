@@ -119,18 +119,18 @@ MenuOptionsPlayer(menu, player)
         break;
         case "Elixir Menu":
             self addMenu(menu, "Elixir Menu");
-            self addOpt("Not Finished Yet", &test);
             self addOpt("Mega Elixirs", &newMenu, "Mega Elixirs");
             self addOpt("Common Elixirs", &newMenu, "Common Elixirs");
         break;
         case "Mega Elixirs":
             self addMenu(menu, "Mega Elixirs");
                 self addOpt("Perkaholic", &BO4GiveElixir, "zm_bgb_perkaholic");
-                self addOpt("Shopping Free");
+                self addOpt("Shopping Free", &GiveElixir2, "zm_bgb_shopping_free");
                 self addOpt("Reign Drops", &BO4GiveElixir, "zm_bgb_reign_drops");
                 self addOpt("Immolation Liquidation", &BO4GiveElixir, "zm_bgb_immolation_liquidation");
                 self addOpt("Extra Credit", &BO4GiveElixir, "zm_bgb_extra_credit");
                 self addOpt("Cache Back", &BO4GiveElixir, "zm_bgb_cache_back");
+                self addOpt("Wall Power", &GiveElixir2, "zm_bgb_wall_power");
         break;
         case "Common Elixirs":
             self addMenu(menu, "Common Elixirs");
