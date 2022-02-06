@@ -476,7 +476,7 @@ LunaWolf()
     spawnactor(#"hash_3f174b9bcc408705", self.origin, self.angles, "wolf_protector", 1);
 }
 
-Round999(value)
+RoundEdit(value)//Renamed cause round999 wasn't really a good name for it now its on a slider.
 {
     namespace_a28acff3::set_round_number(value);
     self thread KillAllZombies();
@@ -509,7 +509,7 @@ Stats_Round(score)
     self zm_stats::function_9288c79b("TOTAL_ROUNDS_SURVIVED", score);
 }
 
-bo4_AddBotsToGame(player) 
+bo4_AddBotsToGame() 
 {
     AddTestClient();
 }
@@ -598,9 +598,13 @@ GiveElixir2(name)
 }
 RemoveEff(weapon)
 {
-    self TakeWeapon(weapon);
-    wait 0.1;
-    self GiveWeapon(weapon);
+    //self TakeWeapon(weapon);
+    //wait 0.1;
+    //self GiveWeapon(weapon);
+    self thread aat::remove(weapon);
+    wait .5;
+    self switchToWeapon(weapon);
+    self S("Removed Effect");
 }
 
 BO4OriginPrint()
