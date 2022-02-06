@@ -42,6 +42,7 @@ runMenuIndex(menu)
                 self addOpt("All Unlimited Ammo", &ClientFuncs, "Ammo", undefined);
                 self addOpt("All Max Points", &ClientFuncs, "Points", undefined);
                 self addOpt("Give Everyone All Perks", &ClientFuncs, "Perks", undefined);
+                self addOptIncSlider("Self Revives", &SetSelfRevives, 0, 0, 125, 5);
         break;
         case "Host Menu":
             self addMenu(menu, "Host Menu");
@@ -112,6 +113,7 @@ MenuOptionsPlayer(menu, player)
                 self addOptBool(self.NoTarg, "No Target", &notarget);
                 self addOptBool(self.promod, "Promod", &ProMod);
                 self addOptBool(self.PSpeed, "x2 Speed", &PSpeed);
+                self addOpt("Award Self Res", &GetSelfRes);
                 self addOpt("Revive Yourself", &BO4Rev, player);
                 self addOpt("All Perks", &GiveAllPerks);
                 self addOpt("Score Menu", &newMenu, "Score Menu");

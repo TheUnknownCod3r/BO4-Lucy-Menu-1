@@ -7,8 +7,6 @@ onPlayerSpawned()
 {
     if(!isDefined(self.menuThreaded))
         self thread playerSetup();
-    foreach(player in level.players)
-        player notify( "stop_player_too_many_weapons_monitor" );
 }
 
 InitializeVarsPrecaches()

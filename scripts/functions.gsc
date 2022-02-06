@@ -585,15 +585,27 @@ S(Message)
     self iPrintLnBold(Message);
 }
 
+GetSelfRes()
+{
+    self zm_laststand::function_3a00302e();//Awards One Self Revive at a time.
+    self S("Self Revive ^1Awarded");
+}
 BO4GiveElixir(name) //works for some, not all
 {
-    self thread bgb::function_b7ba7d51(name);//Actually gives instant use elixir like Perkaholic etc, Doesnt work for Shopping Free, Wall Power etc..?
+    self thread bgb::function_b7ba7d51(name);//Actually gives instant use elixir like Perkaholic etc, Doesnt work for timed Elixirs.
     self thread bgb::give(name);//gives popup for the Elixir on screen, should work for all
+}
+SetSelfRevives(count)
+{
+    foreach(player in level.players){
+        player zm_laststand::function_3d685b5f(count);
+        player S("Awarded "+count+" Self Revives");
+    }
 }
 
 GiveElixir2(name)
 {
-    self thread bgb::function_62f40b0d(name);//Gives Timed Elixir, Works for Shopping free, no timer on screen however
+    self thread bgb::function_62f40b0d(name);//Gives Timed Elixir, Doesnt work for Single Use Elixirs.
     self thread bgb::give(name);//Just for elixir popup
 }
 RemoveEff(weapon)
