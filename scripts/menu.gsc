@@ -118,24 +118,79 @@ MenuOptionsPlayer(menu, player)
                 self addOpt("Clone", &Clone);
         break;
         case "Elixir Menu":
-            self addMenu(menu, "Elixir Menu");
+            self addMenu(menu, "Elixir Menu");//Should be complete
             self addOpt("Mega Elixirs", &newMenu, "Mega Elixirs");
+            self addOpt("Legendary Elixirs", &newMenu, "Legendary Elixirs");
+            self addOpt("Rare Elixirs", &newMenu, "Rare Elixirs");
             self addOpt("Common Elixirs", &newMenu, "Common Elixirs");
+            self addOpt("Classic Elixirs", &newMenu, "Classic Elixirs");
         break;
         case "Mega Elixirs":
-            self addMenu(menu, "Mega Elixirs");
-                self addOpt("Perkaholic", &BO4GiveElixir, "zm_bgb_perkaholic");
+            self addMenu(menu, "Mega Elixirs");//Done
                 self addOpt("Shopping Free", &GiveElixir2, "zm_bgb_shopping_free");
+                self addOpt("Head Drama", &GiveElixir2, "zm_bgb_head_drama");
+                self addOpt("Secret Shopper", &GiveElixir2, "zm_bgb_secret_shopper");
                 self addOpt("Reign Drops", &BO4GiveElixir, "zm_bgb_reign_drops");
-                self addOpt("Immolation Liquidation", &BO4GiveElixir, "zm_bgb_immolation_liquidation");
-                self addOpt("Extra Credit", &BO4GiveElixir, "zm_bgb_extra_credit");
-                self addOpt("Cache Back", &BO4GiveElixir, "zm_bgb_cache_back");
+                self addOpt("Power Vacuum", &GiveElixir2, "zm_bgb_power_vacuum");
+                self addOpt("Near Death Experience", &GiveElixir2, "zm_bgb_near_death_experience");
+                self addOpt("Phoenix Up", &BO4GiveElixir, "zm_bgb_phoenix_up");
+                self addOpt("Conflagration Liquidation", &BO4GiveElixir, "zm_bgb_conflagration_liquidation");
+                self addOpt("Join The Party", &BO4GiveElixir, "zm_bgb_join_the_party");
+                self addOpt("Perkaholic", &BO4GiveElixir, "zm_bgb_perkaholic");
+                self addOpt("Refresh Mint", &BO4GiveElixir, "zm_bgb_refresh_mint");
+                self addOpt("Suit Up", &BO4GiveElixir, "zm_bgb_suit_up");
                 self addOpt("Wall Power", &GiveElixir2, "zm_bgb_wall_power");
         break;
+        case "Legendary Elixirs":
+            self addMenu(menu, "Legendary Elixirs");//Done
+                self addOpt("Cache Back", &BO4GiveElixir, "zm_bgb_cache_back");
+                self addOpt("Dividend Yield", &GiveElixir2, "zm_bgb_dividend_yield");
+                self addOpt("Free Fire", &GiveElixir2, "zm_bgb_free_fire");
+                self addOpt("Perk Up", &BO4GiveElixir, "zm_bgb_perk_up");
+                self addOpt("Power Keg", &BO4GiveElixir, "zm_bgb_power_keg");
+                self addOpt("Wall To Wall Clearance", &GiveElixir2, "zm_bgb_wall_to_wall_clearance");
+                self addOpt("Undead Man Walking", &GiveElixir2, "zm_bgb_undead_man_walking");
+        break;
+        case "Rare Elixirs":
+            self addMenu(menu, "Rare Elixirs");
+                self addOpt("Alchemical Antithesis", &GiveElixir2, "zm_bgb_alchemical_antithesis");
+                self addOpt("Blood Debt", &GiveElixir2, "zm_bgb_blood_debt");
+                self addOpt("Extra Credit", &BO4GiveElixir, "zm_bgb_extra_credit");
+                self addOpt("Immolation Liquidation", &BO4GiveElixir, "zm_bgb_immolation_liquidation");
+                self addOpt("Kill Joy", &BO4GiveElixir, "zm_bgb_kill_joy");
+                self addOpt("Shields Up", &BO4GiveElixir, "zm_bgb_shields_up");
+                self addOpt("Talkin Bout Regeneration", &GiveElixir2, "zm_bgb_talkin_bout_regeneration");
+        break;
         case "Common Elixirs":
-            self addMenu(menu, "Common Elixirs");
+            self addMenu(menu, "Common Elixirs");//Done
+                self addOpt("Bullet Boost", &BO4GiveElixir, "zm_bgb_bullet_boost");
+                self addOpt("CTRL-Z", &GiveElixir2, "zm_bgb_ctrl_z");
+                self addOpt("Dead of Nuclear Winter", &BO4GiveElixir, "zm_bgb_dead_of_nuclear_winter");
+                self addOpt("In Plain Sight", &GiveElixir2, "zm_bgb_in_plain_sight");
+                self addOpt("Licensed Contractor", &BO4GiveElixir, "zm_bgb_licensed_contractor");
+                self addOpt("Phantom Reload", &GiveElixir2, "zm_bgb_phantom_reload");
+                self addOpt("Sword Flay", &GiveElixir2, "zm_bgb_sword_flay");
+                self addOpt("Who's Keeping Score", &BO4GiveElixir, "zm_bgb_whos_keeping_score");
+
+        break;
+        case "Classic Elixirs":
+            self addMenu(menu, "Classic Elixirs");//complete, All Elixirs Work
+                self addOpt("Always Done Swiftly", &GiveElixir2, "zm_bgb_always_done_swiftly");
                 self addOpt("Anywhere But Here", &BO4GiveElixir, "zm_bgb_anywhere_but_here");
+                self addOpt("Burned Out", &GiveElixir2, "zm_bgb_burned_out");
+                self addOpt("Equip Mint", &BO4GiveElixir, "zm_bgb_equip_mint");
+                self addOpt("Head Scan", &GiveElixir2, "zm_bgb_head_scan");
+                self addOpt("Temporal Gift", &GiveElixir2, "zm_bgb_temporal_gift");
+                self addOpt("Aftertaste", &GiveElixir2, "zm_bgb_aftertaste");
+                self addOpt("Point Drops", &BO4GiveElixir, "zm_bgb_point_drops");
+                self addOpt("Anti-Entrapment", &GiveElixir2, "zm_bgb_anti_entrapment");
                 self addOpt("Nowhere But There", &BO4GiveElixir, "zm_bgb_nowhere_but_there");
+                self addOpt("Now You See Me", &GiveElixir2, "zm_bgb_now_you_see_me");
+                self addOpt("Arsenal Accelerator", &GiveElixir2, "zm_bgb_arsenal_accelerator");
+                self addOpt("Pop Shocks", &GiveElixir2, "zm_bgb_pop_shocks");
+                self addOpt("Stock Option", &GiveElixir2, "zm_bgb_stock_option");
+                self addOpt("Newtonian Negation", &GiveElixir2, "zm_bgb_newtonian_negation");
+                self addOpt("Quacknarok", &GiveElixir2, "zm_bgb_quacknarok");
         break;
         case "Map Selection":
             self addMenu(menu, "Map Selection");
