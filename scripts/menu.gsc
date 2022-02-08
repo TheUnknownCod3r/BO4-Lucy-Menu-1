@@ -11,7 +11,7 @@ runMenuIndex(menu)
             self addMenu(menu, level.menuName);
             if(self getVerification() > 0)
             {
-                self addOpt("Personal Menu", &newMenu, "Personal Menu" + self GetEntityNumber());
+                self addOpt("Personal Menu", &newMenu, "Personal Menu");
                 self addOpt("Fun Menu", &newMenu, "Fun Menu");
                 self addOpt("Elixir Menu", &newMenu, "Elixir Menu");
                 self addOpt("Weapon Menu", &newMenu, "Weapon Menu");
@@ -114,7 +114,7 @@ MenuOptionsPlayer(menu, player)
                 self addOptBool(self.promod, "Promod", &ProMod);
                 self addOptBool(self.PSpeed, "x2 Speed", &PSpeed);
                 self addOpt("Award Self Res", &GetSelfRes);
-                self addOpt("Revive Yourself", &BO4Rev, player);
+                self addOpt("Revive Yourself", &BO4Rev);
                 self addOpt("All Perks", &GiveAllPerks);
                 self addOpt("Score Menu", &newMenu, "Score Menu");
                 self addOpt("Clone", &Clone);
@@ -262,13 +262,32 @@ MenuOptionsPlayer(menu, player)
         case "Weapon Menu":
             self addMenu(menu, "Weapon Menu");
             self addOpt("Weapon Selector", &newMenu, "Weapon Selector");
+            self addOpt("Map Specific Weapons", &newMenu, "Map Specific Weapons");
             self addOpt("Camo Selector", &newMenu, "Camo Selector");
             self addOpt("Upgrade Weapon", &UpgradeWeapon);
             self addOpt("Pack a Punch Effects", &newMenu, "Pack a Punch Effects");
             self addOpt("Drop Weapon", &DropWeapon);
             self addOpt("Take All Weapons", &TakeWeapons);
             self addOpt("Take Current Weapon", &TakeCurrentWeapon);
-            
+        break;
+        case "Map Specific Weapons":
+            self addMenu(menu, "Map Specific Weapons");
+            if(BO4GetMap() == "Voyage"){
+                self addOpt("Kraken", &BO4GiveWeapon, "hash_7d7f0dbb00201240");
+            }
+            else if(BO4GetMap() == "IX"){
+                self addOpt("Death of Orion", &BO4GiveWeapon, "hash_4ae11871b1233211");
+            }
+            else if(BO4GetMap() == "Blood"){
+                self addOpt("Blundergat", &BO4GiveBG);
+                self addOpt("Monkey Bombs", &BO4GiveWeapon, "cymbal_monkey");
+                self addOpt("Hells Retriever", &BO4GiveWeapon, "tomahawk_t8");
+                self addOpt("Hells Redeemer", &BO4GiveWeapon, "tomahawk_t8_upgraded");
+                self addOpt("Magmagat", &BO4GiveMG);
+                self addOpt("AcidGat", &BO4GiveAG);
+                self addOpt("Spoon", &BO4GiveSpoon);
+                //, "hash_14db46413dd7381e"
+            }
         break;
         case "Pack a Punch Effects":
             self addMenu(menu, "Pack a Punch Effects");
@@ -336,6 +355,7 @@ MenuOptionsPlayer(menu, player)
 
         case "Powerups Menu":
             self addMenu(menu, "Powerups");
+            if(BO4GetMap() == "Blood"){self addOpt("Zombie Blood", &GivePowerup, "zombie_blood");}
             self addOpt("Max Ammo", &GivePowerup, "full_ammo");
             self addOpt("Fire Sale", &GivePowerup, "fire_sale");
             self addOpt("Bonus Points", &GivePowerup, "bonus_points_player");

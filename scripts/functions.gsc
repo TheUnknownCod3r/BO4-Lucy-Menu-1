@@ -20,13 +20,32 @@ UnlimitedAmmo()
         }
     }
 }
-
-BO4_GiveGun(weapon, player)
+GiveWonder(hash)
 {
-    self giveWeapon(weapon);
-    self switchToWeapon(weapon);
+    self giveWeapon(getWeapon(#hash));
+    self switchToWeapon(getWeapon(#hash));
+}
+BO4GiveBG()
+{
+    self giveWeapon(getweapon(#"hash_19c157f2230454ad"));
+    self switchToWeapon(getweapon(#"hash_19c157f2230454ad"));
 }
 
+BO4GiveSpoon()
+{
+    self giveWeapon(getWeapon(#"hash_52b03a79f854eed3"));
+    self switchToWeapon(getWeapon(#"hash_52b03a79f854eed3"));
+}
+BO4GiveAG()
+{
+    self giveWeapon(getweapon(#"hash_25a13b6f6232a985"));
+    self switchToWeapon(getweapon(#"hash_25a13b6f6232a985"));
+}
+BO4GiveMG()
+{
+    self giveWeapon(getweapon(#"hash_1b5092cccdb3d65b"));
+    self switchToWeapon(getweapon(#"hash_1b5092cccdb3d65b"));
+}
 BO4GiveWeapon(weap)
 {
     weapon = getweapon(weap);
@@ -666,8 +685,7 @@ BO4newOrigin(Coords, Location)
 acquireaat(id) {
     weapon = self getCurrentWeapon();
     self thread aat::acquire(weapon, id);
-}
-
+} 
 //End Changes
 
 bo4_CamoGiver(Camo) 
@@ -850,7 +868,7 @@ B4Gravity()
         SetDvar("bg_gravity", 350);
 }
 
-BO4Rev(player)
+BO4Rev()
 {
-    player thread zm_laststand::auto_revive(player, 0, 0);
+    self thread zm_laststand::auto_revive(self, 0, 0);
 }
