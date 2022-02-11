@@ -41,7 +41,7 @@ playerSetup()
         for(a=0;a<3;a++)
             self iPrintln(".");
         self iPrintln("^9Welcome To " + level.menuName);
-        self iPrintLn("^1Developed By: " + level.menuDeveloper);
+        self iPrintLn("^1Developed By: ^2" + level.menuDeveloper);
         self iPrintln("^0Status: " + self.playerSetting["verification"]);
         for(a=0;a<3;a++)
             self iPrintln(".");

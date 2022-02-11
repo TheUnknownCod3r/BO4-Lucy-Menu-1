@@ -12,6 +12,7 @@
 #include scripts\zm_common\gametypes\dev.gsc;
 #include scripts\zm_common\zm_score.gsc;
 #include scripts\zm_common\util.gsc;
+#include scripts\zm_common\zm_audio.gsc;
 #include scripts\zm_common\zm_powerups.gsc;
 #include scripts\zm_common\zm_stats.gsc;
 #include scripts\zm_common\zm_power.gsc;

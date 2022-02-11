@@ -20,17 +20,23 @@ UnlimitedAmmo()
         }
     }
 }
-GiveWonder(hash)
-{
-    self giveWeapon(getWeapon(#hash));
-    self switchToWeapon(getWeapon(#hash));
-}
 BO4GiveBG()
 {
     self giveWeapon(getweapon(#"hash_19c157f2230454ad"));
     self switchToWeapon(getweapon(#"hash_19c157f2230454ad"));
 }
 
+DoWWDotn()
+{
+    self GiveWeapon(getWeapon(level.var_6fe89212));
+    self switchToWeapon(getWeapon(level.var_6fe89212));
+}
+
+DotnStake()
+{
+    self GiveWeapon(GetWeapon(#"hash_19a4271a5452dc0b"));
+    self switchToWeapon(GetWeapon(#"hash_19a4271a5452dc0b"));
+}
 BO4GiveSpoon()
 {
     self giveWeapon(getWeapon(#"hash_52b03a79f854eed3"));
@@ -313,6 +319,28 @@ TakeCurrentWeapon()
     self TakeWeapon(weapon);
 }
 
+
+KillPlayer(player)
+{
+    player notify("player_suicide");
+    player zm_laststand::bleed_out();
+    self iPrintLnBold("Killed "+player.name);
+    player iPrintLnBold("You Just got murdered By: "+self.name);
+}
+TakeAllPlayerWeaps(player)
+{
+    player takeAllWeapons();
+    player iPrintLnBold("You just had your Weapons Taken!");
+}
+
+sendToJail(player)
+{
+    if(!isDefined(level.JailCoords))
+        self S("Jail Coords are Not Defined for the Map");
+    
+    player setOrigin(level.JailCoords);
+    player S("You were sent to JAIL!");
+}
 BO4Level55(player)
 {
     player AddRankXp("kill", undefined, 0, 0, true, 20000);
@@ -322,6 +350,13 @@ BO4Level55(player)
     player iPrintLnBold("^2In order for the rank to save, please end the game via the pause menu and not the fast end!!!");
 }
 
+BO4SetPrestigeMax()
+{
+    self stats::set_stat("playerStatsList", "plevel", "statvalue", 11);
+    self stats::set_stat("playerstatslist", "paragon_rank", "statvalue", 964);
+    self stats::set_stat("playerstatslist", "paragon_rankxp", "statvalue", 52345460);
+    self S("This should set you to master 1000");
+}
 PlasmaLoopplayer(player)
 {
     player.PlasmaLoop = isDefined(player.PlasmaLoop) ? undefined : true;
@@ -335,6 +370,31 @@ PlasmaLoopplayer(player)
     }
 }
 
+PlayerMessage(val, player)
+{
+    foreach(client in level.players)
+    {
+        if(val == 0){ client S(player.name+" Has a Mod Menu!");}
+        else if(val == 1){ client S(player.name+" Is Cheating!!");}
+        else if(val == 2){ client S(player.name+" is a Hacking Bitch!");}
+        else if(val == 3){ client S(player.name+" Is a terrible Zombies Player!");}
+        else if(val == 4){ client S(player.name+" Has a Tiny Pee Pee");}
+    }
+}
+PlasmaLoop()
+{
+    self.PlasmaLoop2 = isDefined(self.PlasmaLoop2) ? undefined : true;
+    if(!isDefined(self.PlasmaGiven)) self.PlasmaGiven = 0;
+    if(isDefined(self.PlasmaLoop2)){
+        while(isDefined(self.PlasmaLoop2))
+        {
+            self function_e8f77739(#"zm_timeplayed", 1000000);
+            self.PlasmaGiven += 1000000;
+            self iPrintLnBold("You Just Got 100k Plasma. Total: "+self.PlasmaGiven);
+            wait 1;
+        }
+    }
+}
 bo4_MaxLevels(player)
 {
     player endon("disconnect");
@@ -561,6 +621,14 @@ test()
     self iPrintLnBold("Test");
 }
 
+TeleTo(arg, player)
+{
+    if(arg == "them"){
+        self setOrigin(player.origin + (+30, 0, 0));
+    }else if(arg == "me"){
+        player setOrigin(self.origin + (30, 0, 0));
+    }
+}
 FloatingZombies()
 {
     if(!isDefined(self.FloatingZombies))
@@ -597,6 +665,37 @@ ClientFuncs(args, val1)
         {
             player thread GiveAllPerks();
         }
+    }
+}
+
+ClientHandler(func, player)
+{
+    if(func == "GodMode"){
+        player thread Godmode();
+    }else if(func == "Ammo"){
+        player thread UnlimitedAmmo();
+    }else if(func == "MaxLevel"){
+        player thread BO4Level55(player);
+    }else if(func == "Plasma"){
+        player thread PlasmaLoop();
+    }else if(func == "BG"){
+        player thread BO4GiveBG();
+    }else if(func == "MG"){
+        player thread BO4GiveMG();
+    }else if(func == "AG"){
+        player thread BO4GiveAG();
+    }else if(func == "Perks"){
+        player thread GiveAllPerks();
+    }else if(func == "Score"){
+        player thread zm_score::add_to_player_score(40000000);
+    }else if(func == "SelfRev"){
+        player thread GetSelfRes();
+    }else if(func == "UnlockAll"){
+        player thread BO4_UnlockAll(player);
+    }else if(func == "WeaponLevels"){
+        player thread BO4_MaxLevels(player);
+    }else if(func == "1000"){
+        player thread BO4SetPrestigeMax();
     }
 }
 S(Message)
@@ -644,6 +743,13 @@ BO4OriginPrint()
     self S("Coords: "+current_origin);
 }
 
+DownPlayer(player)
+{
+    player disableInvulnerability();
+    player doDamage(player.health + 1, player.origin);
+    self iPrintLnBold("Player ^1Downed");
+    player iPrintLnBold("You Were Killed");
+}
 BO4GetMap()
 {
     if(level.script == "zm_towers") return "IX";//
@@ -655,7 +761,17 @@ BO4GetMap()
     else if(level.script == "zm_office") return "Classified";//
     else if(level.script == "zm_zodt8") return "Voyage";//
 }
-
+GiveDOO()
+{
+    self GiveWeapon(getweapon(#"hash_4ae11871b1233211"));
+    self switchToWeapon(getweapon(#"hash_4ae11871b1233211"));
+}
+PlayEESong()
+{
+    level thread zm_audio::sndmusicsystem_stopandflush();
+	waitframe(1);
+	level thread zm_audio::sndmusicsystem_playstate("ee_song");
+}
 ChangeMap(Mapname)
 {
     self iPrintLnBold("Map Changing To "+Mapname);
@@ -871,4 +987,21 @@ B4Gravity()
 BO4Rev()
 {
     self thread zm_laststand::auto_revive(self, 0, 0);
+}
+
+//Starting Gun Game//
+
+GameModeHandler(gameModeSelected)
+{
+    if(!isDefined(gameModeSelected))
+    {
+        self S("How the FUCK are you here?");
+    }
+    else if(gameModeSelected == "Gun Game")
+    {
+
+    }else if(gameModeSelected == "All The Weapons")
+    {
+
+    }
 }

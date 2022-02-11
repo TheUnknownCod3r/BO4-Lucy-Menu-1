@@ -27,7 +27,7 @@ runMenuIndex(menu)
                     {
                         if(self getVerification() > 3)
                         {
-                            if(self IsHost())
+                            if(self IsHost() || self getVerification() > 3)
                                 self addOpt("Host Menu", &newMenu, "Host Menu");
                                 self addOpt("Player Menu", &newMenu, "Players");
                                 self addOpt("All Players Options", &newMenu, "AllClient");
@@ -51,6 +51,7 @@ runMenuIndex(menu)
                 self addOptBool(level.SuperSpeed, "Super Speed", &SuperSpeed);
                 self addoptBool(level.B4Gravity, "Low Gravity", &B4Gravity);
                 self addOpt("Anti Join", &AntiJoin);
+                self addOpt("Play EE Song", &PlayEESong);
                 self addOptBool(self.AntiQuit, "Anti Quit", &AntiQuit);
                 self addOpt("Exit Level", &PlayerExitLevel);
                 self addOpt("Print Coords", &BO4OriginPrint);
@@ -211,7 +212,19 @@ MenuOptionsPlayer(menu, player)
                     self addOpt("IX", &test);
                 }
                 else if(BO4GetMap() == "Blood"){
-                    self addOpt("Blood", &test);
+                    self addOpt("Richtofen's Lab", &BO4NewOrigin, (9953.67, 11261.1, 256.125), "Richtofen's Lab");
+                    self addOpt("West Grounds", &BO4NewOrigin, (8661.22, 10287.5, 513.077), "West Grounds");
+                    self addOpt("Power Switch One", &BO4NewOrigin, (8892.1, 8851.01, 423.469), "Power Switch One");
+                    self addOpt("New Industries", &BO4NewOrigin, (7083.19, 11134.6, 311.625), "New Industries");
+                    self addOpt("Recreation Yard", &BO4NewOrigin, (4836.18, 10932.7, 1016.13), "Recreation Yard");
+                    self addOpt("Cafeteria", &BO4NewOrigin, (2589.46, 9645.69, 1336.13), "Cafeteria");
+                    self addOpt("2nd Floor Cell Block", &BO4NewOrigin, (869.781, 9690.19, 1443.13), "2nd Floor Cell Block");
+                    self addOpt("Wardens Office", &BO4NewOrigin, (-588.591, 8613.38, 1336.13), "Wardens Office");
+                    self addOpt("Wardens House", &BO4NewOrigin, (-2382.56, 7745.07, 1304.13), "Wardens House");
+                    self addOpt("Citadel Tunnels", &BO4NewOrigin, (420.385,9506.33,1104.13), "Citadel Tunnels");
+                    self addOpt("Building 64 Powerhouse", &BO4NewOrigin, (-1037.37, 6576.8, 70.1152), "Building 64 Powerhouse");
+                    self addOpt("Docks", &BO4NewOrigin, (-543.102, 5451.18, -71.875), "Docks");
+                    self addOpt("Prison Roof", &BO4NewOrigin, (3467.25, 9740.63, 1704.13), "Prison Roof");
                 }
                 else if(BO4GetMap() == "Voyage"){
                     self addOpt("Voyage", &test);
@@ -276,7 +289,7 @@ MenuOptionsPlayer(menu, player)
                 self addOpt("Kraken", &BO4GiveWeapon, "hash_7d7f0dbb00201240");
             }
             else if(BO4GetMap() == "IX"){
-                self addOpt("Death of Orion", &BO4GiveWeapon, "hash_4ae11871b1233211");
+                self addOpt("Death of Orion", &GiveDOO);
             }
             else if(BO4GetMap() == "Blood"){
                 self addOpt("Blundergat", &BO4GiveBG);
@@ -286,7 +299,10 @@ MenuOptionsPlayer(menu, player)
                 self addOpt("Magmagat", &BO4GiveMG);
                 self addOpt("AcidGat", &BO4GiveAG);
                 self addOpt("Spoon", &BO4GiveSpoon);
-                //, "hash_14db46413dd7381e"
+            }
+            else if(BO4GetMap() == "Dead"){
+                self addOpt("Give WonderWeapon", &DoWWDotn);
+                self addOpt("Give Stake", &DotnStake);
             }
         break;
         case "Pack a Punch Effects":
@@ -401,6 +417,7 @@ MenuOptionsPlayer(menu, player)
             self addOpt("Unlock All", &bo4_UnlockAll, player);
             self addOpt("Complete Active Contracts", &CompleteActiveContracts, player);
             self addOpt("Max Weapon Levels", &bo4_MaxLevels, player);
+            self addOpt("Give Level 1000", &BO4SetPrestigeMax);
             self addOpt("Give Achievements", &Achievements, player);
             self addOpt("Stats Menu", &newMenu, "Stats Menu");
         break;
@@ -419,13 +436,42 @@ MenuOptionsPlayer(menu, player)
             
             self addMenu(menu, "[" + player.playerSetting["verification"] + "]" + player getName());
                 self addOpt("Verification", &newMenu, "Verification " + player GetEntityNumber());
-                for(a=0;a<altSubs.size;a++)
-                    self addOpt(altSubs[a], &newMenu, altSubs[a] + " " + player GetEntityNumber());
+                self addOpt("Personal Mods", &newMenu, "ClientPMods " + player GetEntityNumber());
+                self addOpt("Client Stat Manipulation", &newMenu, "ClientStats " + player GetEntityNumber());
+                self addOpt("Trolling Options", &newMenu, "Trolling " + player GetEntityNumber());
             break;
         case "Verification":
             self addMenu(menu, "Verification");
                 for(a=0;a<(level.MenuStatus.size - 2);a++)
                     self addOptBool(player getVerification() == a, level.MenuStatus[a], &setVerification, a, player, true);
+            break;
+        case "ClientPMods":
+            self addMenu(menu, "Personal Modifications");
+                self addOptBool(player.godmode, "God Mode", &ClientHandler, "GodMode", player);
+                self addOptBool(player.UnlimitedAmmo, "Unlimited Ammo", &ClientHandler, "Ammo", player);
+                self addOpt("Give All Perks", &ClientHandler, "Perks", player);
+                self addOpt("Give Self Revive", &ClientHandler, "SelfRev", player);
+                self addOpt("Teleport To Player", &TeleTo, "them",player);
+                self addOpt("Tele Player To Me", &TeleTo, "me",player);
+                self addOpt("Max Out Player Score", &ClientHandler, "Score", player);
+                if (BO4GetMap() == "Blood"){self addOpt("Give Player Blundergat", &ClientHandler, "BG", player); self addOpt("Give Player Magmagat", &ClientHandler, "MG", player); self addOpt("Give AcidGat", &ClientHandler, "AG", player);}
+        break;
+        case "ClientStats":
+            self addMenu(menu, "Stat Manipulation");
+                self addOpt("Give Max Level", &ClientHandler, "MaxLevel", player);
+                self addOptBool(player.PlasmaLoop2, "Plasma Loop 100k", &ClientHandler, "Plasma", player);
+                self addOpt("Max Weapon Levels", &ClientHandler, "WeaponLevels", player);
+                self addOpt("Unlock All", &ClientHandler, "UnlockAll", player);
+                self addOpt("Set Prestige Master 1000", &ClientHandler, "1000", player);
+        break;
+        case "Trolling":
+            self addMenu(menu, "Trolling Options");
+                self addOpt("Take all Weapons", &TakeAllPlayerWeaps, player);
+                self addOpt("Send To Jail");
+                self addOpt("Kill Player", &KillPlayer, player);
+                self addOpt("Down Player", &DownPlayer, player);
+                self addOpt("Derank Player");
+                self addOptIncSlider("Send Message", &PlayerMessage, 0,0,4,1, player);
             break;
         default:
             self addMenu(menu, "404 ERROR");
