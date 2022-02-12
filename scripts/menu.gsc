@@ -304,6 +304,11 @@ MenuOptionsPlayer(menu, player)
             else if(BO4GetMap() == "Dead"){
                 self addOpt("Give Savage Impaler", &DoWWDotn1);
                 self addOpt("Give Alistairs Folly", &DoWWDotn2);
+            }else if(BO4GetMap() == "AE"){
+                self addOpt("Hand of Ouranous", &BO4GiveWeapon, "ww_hand_o_upgraded");
+                self addOpt("Hand of Hemera", &BO4GiveWeapon, "ww_hand_h_upgraded");
+                self addOpt("Hand of Gaia", &BO4GiveWeapon, "ww_hand_g_upgraded");
+                self addOpt("Hand of Charon", &BO4GiveWeapon, "ww_hand_c_upgraded");
             }
         break;
         case "Pack a Punch Effects":
