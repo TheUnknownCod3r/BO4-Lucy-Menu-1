@@ -26,21 +26,34 @@ BO4GiveBG()
     self switchToWeapon(getweapon(#"hash_19c157f2230454ad"));
 }
 
-DoWWDotn()
+DoWWDotn1()
 {
-    self GiveWeapon(getWeapon(level.var_6fe89212));
-    self switchToWeapon(getWeapon(level.var_6fe89212));
+    self GiveWeapon(getWeapon(#"hash_25f355b5d35b8488"));
+    self switchToWeapon(getWeapon(#"hash_25f355b5d35b8488"));
 }
 
-DotnStake()
+GiveKraken()
+{//hash_5b8d1ff4b772bd85
+    self giveWeapon(getWeapon(#"hash_5b8d1ff4b772bd85"));
+    self switchToWeapon(getWeapon(#"hash_5b8d1ff4b772bd85"));
+}
+DoWWDotn2()
 {
-    self GiveWeapon(GetWeapon(#"hash_19a4271a5452dc0b"));
-    self switchToWeapon(GetWeapon(#"hash_19a4271a5452dc0b"));
+    self GiveWeapon(GetWeapon(#"hash_138efe2bb30be63c"));
+    self switchToWeapon(GetWeapon(#"hash_138efe2bb30be63c"));
 }
 BO4GiveSpoon()
 {
     self giveWeapon(getWeapon(#"hash_52b03a79f854eed3"));
     self switchToWeapon(getWeapon(#"hash_52b03a79f854eed3"));
+}
+//freezegun? hash_2605a6745df58840
+
+//Spectral Shield hash_185abc5c82e9d849
+BO4GiveSpork()
+{
+    self giveWeapon(getWeapon(#"hash_32a584f5a65c70d1"));
+    self switchToWeapon(getWeapon(#"hash_32a584f5a65c70d1"));
 }
 BO4GiveAG()
 {
@@ -696,6 +709,8 @@ ClientHandler(func, player)
         player thread BO4_MaxLevels(player);
     }else if(func == "1000"){
         player thread BO4SetPrestigeMax();
+    }else if(func == "TakePoints"){
+        player zm_score::minus_to_player_score(40000000);
     }
 }
 S(Message)
@@ -748,7 +763,7 @@ DownPlayer(player)
     player disableInvulnerability();
     player doDamage(player.health + 1, player.origin);
     self iPrintLnBold("Player ^1Downed");
-    player iPrintLnBold("You Were Killed");
+    player iPrintLnBold("You Were Downed by "+self.name);
 }
 BO4GetMap()
 {

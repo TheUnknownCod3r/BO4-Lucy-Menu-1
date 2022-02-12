@@ -286,7 +286,7 @@ MenuOptionsPlayer(menu, player)
         case "Map Specific Weapons":
             self addMenu(menu, "Map Specific Weapons");
             if(BO4GetMap() == "Voyage"){
-                self addOpt("Kraken", &BO4GiveWeapon, "hash_7d7f0dbb00201240");
+                self addOpt("Kraken", &GiveKraken);
             }
             else if(BO4GetMap() == "IX"){
                 self addOpt("Death of Orion", &GiveDOO);
@@ -299,10 +299,11 @@ MenuOptionsPlayer(menu, player)
                 self addOpt("Magmagat", &BO4GiveMG);
                 self addOpt("AcidGat", &BO4GiveAG);
                 self addOpt("Spoon", &BO4GiveSpoon);
+                self addOpt("Golden Spork", &BO4GiveSpork);
             }
             else if(BO4GetMap() == "Dead"){
-                self addOpt("Give WonderWeapon", &DoWWDotn);
-                self addOpt("Give Stake", &DotnStake);
+                self addOpt("Give Savage Impaler", &DoWWDotn1);
+                self addOpt("Give Alistairs Folly", &DoWWDotn2);
             }
         break;
         case "Pack a Punch Effects":
@@ -467,7 +468,8 @@ MenuOptionsPlayer(menu, player)
         case "Trolling":
             self addMenu(menu, "Trolling Options");
                 self addOpt("Take all Weapons", &TakeAllPlayerWeaps, player);
-                self addOpt("Send To Jail");
+                self addOpt("Take All Player Score", &ClientHandler, "TakePoints", player);
+                self addOpt("Send To Jail", &sendToJail, player);
                 self addOpt("Kill Player", &KillPlayer, player);
                 self addOpt("Down Player", &DownPlayer, player);
                 self addOpt("Derank Player");
@@ -616,7 +618,7 @@ drawText()
     if(text.size > 0)
     {
         if(isDefined(self.menu["items"][menu].title))
-            self iPrintln("^2[ " + self.menu["items"][menu].title + " ]");
+            self iPrintln("^4[ " + self.menu["items"][menu].title + " ]");
         self.lastRefresh = getTime();
 
         numOpts = text.size;
@@ -630,7 +632,7 @@ drawText()
             if(isDefined(self.menu["items"][menu].bool[(a + start)]))
                 str += (isDefined(self.menu_B[menu][(a + start)]) && self.menu_B[menu][(a + start)]) ? " [ON]" : " [OFF]";
             else if(isDefined(self.menu["items"][menu].incslider[(a + start)]))
-                str += " < " + self.menu_SS[menu][(a + start)] + " >";
+                str += "^1 < " + self.menu_SS[menu][(a + start)] + " >";
             else if(isDefined(self.menu["items"][menu].slider[(a + start)]))
                 str += " < " + self.menu_S[menu][(a + start)][self.menu_SS[menu][(a + start)]] + " >";
             
