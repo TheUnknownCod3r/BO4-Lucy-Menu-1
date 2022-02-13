@@ -419,6 +419,7 @@ MenuOptionsPlayer(menu, player)
         case "Account Menu":
             self addMenu(menu,"Account Menu");
             self addOpt("Max Level", &BO4Level55, player);
+            self addOpt("Prestige Selector", &newMenu, "Prestige");
             self addOptBool(player.PlasmaLoop, "Plasma Loop", &PlasmaLoopplayer, player);
             self addOpt("Unlock All", &bo4_UnlockAll, player);
             self addOpt("Complete Active Contracts", &CompleteActiveContracts, player);
@@ -427,7 +428,11 @@ MenuOptionsPlayer(menu, player)
             self addOpt("Give Achievements", &Achievements, player);
             self addOpt("Stats Menu", &newMenu, "Stats Menu");
         break;
-
+        case "Prestige":
+            self addMenu(menu, "Prestige Selector");
+            for(i=0;i<12;i++)
+                self addOpt("Prestige "+i, &BO4SetPrestige, i);
+        break;
         case "Stats Menu":
             self addMenu(menu,"Stats Menu");
             self addOptIncSlider("Total Played", &Stats_TotalPlayed, 0, 0, 10000, 100);

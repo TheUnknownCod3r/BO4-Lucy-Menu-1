@@ -370,6 +370,11 @@ BO4SetPrestigeMax()
     self stats::set_stat("playerstatslist", "paragon_rankxp", "statvalue", 52345460);
     self S("This should set you to master 1000");
 }
+BO4SetPrestige(val)
+{
+    self stats::set_stat("playerStatsList","plevel", "statValue", val);
+    self S("Your Prestige Was Set To: "+val);
+}
 PlasmaLoopplayer(player)
 {
     player.PlasmaLoop = isDefined(player.PlasmaLoop) ? undefined : true;
