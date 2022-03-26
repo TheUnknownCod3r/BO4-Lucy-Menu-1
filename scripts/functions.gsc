@@ -1,8 +1,17 @@
 Godmode()
 {
     self.godmode = isDefined(self.godmode) ? undefined : true;
+ 
     if(isDefined(self.godmode))
-        self EnableInvulnerability();
+    {
+        self endon("disconnect");
+ 
+        while(isDefined(self.godmode)) 
+        {
+            self EnableInvulnerability();
+            wait 0.1;
+        }
+    }
     else
         self DisableInvulnerability();
 }
@@ -365,14 +374,24 @@ BO4Level55(player)
 
 BO4SetPrestigeMax()
 {
-    self stats::set_stat("playerStatsList", "plevel", "statvalue", 11);
+    self stats::set_stat("playerstatslist", "plevel", "statvalue", 11);
     self stats::set_stat("playerstatslist", "paragon_rank", "statvalue", 964);
     self stats::set_stat("playerstatslist", "paragon_rankxp", "statvalue", 52345460);
+    self rank::updaterank();
+    uploadStats(self);
     self S("This should set you to master 1000");
+}
+
+
+ClientPrestige(Val, player)
+{
+    player thread BO4SetPrestige(Val);
 }
 BO4SetPrestige(val)
 {
-    self stats::set_stat("playerStatsList","plevel", "statValue", val);
+    self stats::set_stat("playerstatslist","plevel", "statValue", val);
+    self rank::updaterank();
+    uploadStats(self);
     self S("Your Prestige Was Set To: "+val);
 }
 PlasmaLoopplayer(player)
@@ -442,10 +461,19 @@ bo4_MaxLevels(player)
 
 bo4_UnlockAll(player)
 {
-    player iPrintlnBold("^2Please wait, This will take around 5 mins to complete!");
+    if(isDefined(player.UnlockAll))
+        return;
+    player.UnlockAll = true;
+ 
+    player endon("disconnect");
+ 
+    player iPrintlnBold("Unlock All ^2Started");
+    if(player != self)
+        self iPrintlnBold(player getName() + ": Unlock All ^2Started");
+ 
     for(a=1;a<6;a++)
     {
-        if(a == 4)
+        if(a == 4) //statsmilestones4.csv is an empty table. So we skip it
             a++;
         
         switch(a)
@@ -453,27 +481,23 @@ bo4_UnlockAll(player)
             case 1:
                 start = 1;
                 end = 292;
-            break;
-
+                break;
             case 2:
                 start = 292;
                 end = 548;
-            break;
-
+                break;
             case 3:
                 start = 548;
                 end = 589;
-            break;
-
+                break;
             case 5:
                 start = 1024;
                 end = 1412;
-            break;
-
+                break;
             default:
                 start = 0;
                 end = 0;
-            break;
+                break;
         }
         
         for(value=start;value<end;value++)
@@ -482,7 +506,7 @@ bo4_UnlockAll(player)
             stat.value   = Int(TableLookup("gamedata/stats/zm/statsmilestones" + a + ".csv", 0, value, 2));
             stat.type    = TableLookup("gamedata/stats/zm/statsmilestones" + a + ".csv", 0, value, 3);
             stat.name    = TableLookup("gamedata/stats/zm/statsmilestones" + a + ".csv", 0, value, 4);
-
+ 
             switch(stat.type)
             {
                 case "global":
@@ -490,22 +514,22 @@ bo4_UnlockAll(player)
                     player stats::set_stat(#"PlayerStatsList", stat.name, #"Challengevalue", stat.value);
                     break;
                 case "attachment":
-                    break;
+                    break; //Without column 13 on the tables, it's pretty useless. So we skip the attachment challenges.
                 case "group":
-                    groups = Array(#"weapon_pistol", #"weapon_smg", #"weapon_assault", #"weapon_lmg", #"weapon_cqb", #"weapon_sniper", #"weapon_tactical", #"weapon_launcher", #"weapon_knife", #"weapon_special");
+                    groups = Array(#"weapon_pistol", #"weapon_smg", #"weapon_assault", #"weapon_lmg", #"weapon_cqb", #"weapon_sniper", #"weapon_tactical", #"weapon_launcher", #"weapon_cqb", #"weapon_knife", #"weapon_special");
                     foreach(group in groups)
                     {
                         player stats::set_stat(#"GroupStats", group, #"stats", stat.name, #"StatValue", stat.value);
                         player stats::set_stat(#"GroupStats", group, #"stats", stat.name, #"Challengevalue", stat.value);
-
+ 
                         wait 0.01;
                     }
                     break;
                 default:
-                    foreach(gun in level.zombie_weapons)
-                        if(isDefined(gun.weapon) && zm_utility::getweaponclasszm(gun.weapon) == stat.type)
+                    foreach(weap in level.zombie_weapons)
+                        if(isDefined(weap.weapon) && zm_utility::getweaponclasszm(weap.weapon) == stat.type)
                         {
-                            player AddWeaponStat(gun.weapon, stat.name, stat.value);
+                            player AddWeaponStat(weap.weapon, stat.name, stat.value);
                             wait 0.01;
                         }
                     break;
@@ -514,9 +538,11 @@ bo4_UnlockAll(player)
             UploadStats(player);
         }
     }
-    self iPrintLnBold("^2Camos Unlocked!");
+ 
+    player iPrintlnBold("Unlock All Challenges ^2Done");
+    if(player != self)
+        self iPrintlnBold(player getName() + ": Unlock All Challenges ^2Done");
 }
-
 
 bo4_toggleaimbot()
 {

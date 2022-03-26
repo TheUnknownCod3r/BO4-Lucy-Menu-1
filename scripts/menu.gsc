@@ -61,8 +61,6 @@ runMenuIndex(menu)
             self addMenu(menu, "Players");
                 foreach(player in level.players)
                 {
-                    if(player IsHost() && !self IsHost())
-                        continue;
                     if(!isDefined(player.playerSetting["verification"]))
                         player.playerSetting["verification"] = level.MenuStatus[level.AutoVerify];
                     
@@ -470,10 +468,16 @@ MenuOptionsPlayer(menu, player)
         case "ClientStats":
             self addMenu(menu, "Stat Manipulation");
                 self addOpt("Give Max Level", &ClientHandler, "MaxLevel", player);
+                self addOpt("Prestige Selector", &newMenu, "CPrestige " + player getEntityNumber());
                 self addOptBool(player.PlasmaLoop2, "Plasma Loop 100k", &ClientHandler, "Plasma", player);
                 self addOpt("Max Weapon Levels", &ClientHandler, "WeaponLevels", player);
                 self addOpt("Unlock All", &ClientHandler, "UnlockAll", player);
                 self addOpt("Set Prestige Master 1000", &ClientHandler, "1000", player);
+        break;
+        case "CPrestige":
+            self addMenu(menu, "Client Prestige Selector");
+                for(i=0;i<12;i++)
+                    self addOpt("Prestige: "+i, &ClientPrestige, i, player);
         break;
         case "Trolling":
             self addMenu(menu, "Trolling Options");
