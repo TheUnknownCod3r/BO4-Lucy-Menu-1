@@ -11,6 +11,8 @@ Step 3 -> Launch BO4 and go to zombies then go into a solo Zombies Pre game lobb
 
 
 ## UPDATES
+Updates were paused on the 17th Feb 2021 in order to start work on the Multiplayer version.
+
 
 ==== Version 1.2.3-Unofficial ====
  - Added Basic Elixir Menu
