@@ -365,21 +365,44 @@ sendToJail(player)
 }
 BO4Level55(player)
 {
-    player AddRankXp("kill", undefined, 0, 0, true, 20000);
+    player AddRankXpValue("kill", 25160000);
     player rank::updaterank();
-    player AddRankXp("kill", undefined, 0, 0, true, 20000);
+    wait .1;
     uploadStats(player);
     player iPrintLnBold("^2In order for the rank to save, please end the game via the pause menu and not the fast end!!!");
 }
 
+BO4GetPrestige()
+{
+	prestigeVal = self stats::get_stat("playerstatslist", "plevel", "statvalue");
+	self iPrintLnBold("Your Prestige is: "+prestigeVal);
+}
+
+BO4GetLevel()
+{
+    levelVal = self stats::get_stat("playerstatslist", "rank", "statvalue");
+    self iPrintLnBold(levelVal);
+}
 BO4SetPrestigeMax()
 {
+    currentPrestige = self stats::get_stat("playerstatslist", "plevel", "statvalue");
+    if(currentPrestige == 11){
     self stats::set_stat("playerstatslist", "plevel", "statvalue", 11);
-    self stats::set_stat("playerstatslist", "paragon_rank", "statvalue", 964);
-    self stats::set_stat("playerstatslist", "paragon_rankxp", "statvalue", 52345460);
+    self stats::set_stat("playerstatslist", "paragon_rank", "statvalue", 999);
+    self stats::set_stat("playerstatslist", "paragon_rankxp", "statvalue", 251600000);
+    self addRankXpValue("kill", 251600000);
     self rank::updaterank();
+    wait .1;
     uploadStats(self);
     self S("This should set you to master 1000");
+    }
+    else{
+        self stats::set_stat("playerstatslist", "plevel", "statvalue", 10);
+        self AddRankXpValue("kill", 25160000);
+        self rank::updaterank();
+        wait .1;
+        uploadStats(self);
+    }
 }
 
 

@@ -50,6 +50,8 @@ runMenuIndex(menu)
                 self addOptBool(level.SuperJump, "Super Jump", &SuperJump);
                 self addOptBool(level.SuperSpeed, "Super Speed", &SuperSpeed);
                 self addoptBool(level.B4Gravity, "Low Gravity", &B4Gravity);
+                self addOpt("Print Prestige", &BO4GetPrestige);
+                self addOpt("Print Current Level", &BO4GetLevel);
                 self addOpt("Anti Join", &AntiJoin);
                 self addOpt("Play EE Song", &PlayEESong);
                 self addOptBool(self.AntiQuit, "Anti Quit", &AntiQuit);
