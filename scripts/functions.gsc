@@ -372,6 +372,7 @@ BO4Level55(player)
     player iPrintLnBold("^2In order for the rank to save, please end the game via the pause menu and not the fast end!!!");
 }
 
+
 BO4GetPrestige()
 {
 	prestigeVal = self stats::get_stat("playerstatslist", "plevel", "statvalue");
@@ -660,28 +661,56 @@ bo4_AddBotsToGame()
     AddTestClient();
 }
 
-bo4_OpenTheDoors()
+BO4_OpenAllDoors()
 {
-    types = array("zombie_door", "zombie_airlock_buy", "zombie_debris");
-    foreach(type in types)
-    {
-        zombie_doors = GetEntArray(type, "targetname");
-        foreach(door in zombie_doors)
-        {
-            if(door._door_open == 0)
-            {
-                door thread zm_blockers::door_opened(door.zombie_cost, 0);
-                door._door_open = true;
-
-                all_trigs = GetEntArray(door.target, "target");
-                foreach(trig in all_trigs)
-                    trig thread zm_utility::set_hint_string(trig, "");
-            }
-        }
-    }
-    level._doors_done = true;
+	setdvar(#"zombie_unlock_all", 1);
+	level flag::set("power_on");
+	level clientfield::set("zombie_power_on", 1);
+	power_trigs = getentarray("use_elec_switch", "targetname");
+	foreach(trig in power_trigs)
+	{
+		if(isdefined(trig.script_int))
+		{
+			level flag::set("power_on" + trig.script_int);
+			level clientfield::set("zombie_power_on", trig.script_int + 1);
+		}
+	}
+	players = getplayers();
+	zombie_doors = getentarray("zombie_door", "targetname");
+	for(i = 0; i < zombie_doors.size; i++)
+	{
+		if(!(isdefined(zombie_doors[i].has_been_opened) && zombie_doors[i].has_been_opened))
+		{
+			zombie_doors[i] notify(#"trigger", {#activator:players[0]});
+		}
+		if(isdefined(zombie_doors[i].power_door_ignore_flag_wait) && zombie_doors[i].power_door_ignore_flag_wait)
+		{
+			zombie_doors[i] notify(#"power_on");
+		}
+		waitframe(1);
+	}
+	zombie_airlock_doors = getentarray("zombie_airlock_buy", "targetname");
+	for(i = 0; i < zombie_airlock_doors.size; i++)
+	{
+		zombie_airlock_doors[i] notify(#"trigger", {#activator:players[0]});
+		waitframe(1);
+	}
+	zombie_debris = getentarray("zombie_debris", "targetname");
+	for(i = 0; i < zombie_debris.size; i++)
+	{
+		if(isdefined(zombie_debris[i]))
+		{
+			zombie_debris[i] notify(#"trigger", {#activator:players[0]});
+		}
+		waitframe(1);
+	}
+	level notify(#"open_sesame");
+	wait(1);
+	setdvar(#"zombie_unlock_all", 0);
     self iPrintLnBold("Doors ^2Opened");
 }
+
+
 //Start Changes
 test()
 {

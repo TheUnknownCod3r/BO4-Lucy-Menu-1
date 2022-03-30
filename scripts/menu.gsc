@@ -266,7 +266,7 @@ MenuOptionsPlayer(menu, player)
             self addOptBool(self.personal_instakill, "Insta Kill", &selfInstaKill);
             self addOpt("Spawn Luna Wolf", &LunaWolf);
             self addOpt("Add Bot", &bo4_AddBotsToGame);
-            self addOpt("Open All Doors", &bo4_OpenTheDoors);
+            self addOpt("Open All Doors", &BO4_OpenAllDoors);
             self addOptIncSlider("Edit Round: ", &RoundEdit, 0, 0, 300, 1);   
             self addOpt("Save Location", &SaveLocation, 0);
             self addOpt("Load Location", &SaveLocation, 1);
