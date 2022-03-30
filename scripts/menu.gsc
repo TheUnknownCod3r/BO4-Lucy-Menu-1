@@ -31,6 +31,8 @@ runMenuIndex(menu)
                                 self addOpt("Host Menu", &newMenu, "Host Menu");
                                 self addOpt("Player Menu", &newMenu, "Players");
                                 self addOpt("All Players Options", &newMenu, "AllClient");
+                                if(!isDefined(level.GameModeSelected))
+                                    self addOpt("GameModes", &newMenu, "GameModes");
                         }
                     }
                 }
@@ -43,6 +45,11 @@ runMenuIndex(menu)
                 self addOpt("All Max Points", &ClientFuncs, "Points", undefined);
                 self addOpt("Give Everyone All Perks", &ClientFuncs, "Perks", undefined);
                 self addOptIncSlider("Self Revives", &SetSelfRevives, 0, 0, 125, 5);
+        break;
+        case "GameModes":
+            self addMenu(menu, "Game Modes");
+                self addOpt("All The Weapons", &GameModeHandler, "All The Weapons");
+                self addOpt("Gun Game", &GameModeHandler, "Gun Game");
         break;
         case "Host Menu":
             self addMenu(menu, "Host Menu");
