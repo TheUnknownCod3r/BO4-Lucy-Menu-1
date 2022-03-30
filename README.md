@@ -11,7 +11,16 @@ Step 3 -> Launch BO4 and go to zombies then go into a solo Zombies Pre game lobb
 
 
 ## UPDATES
-Updates were paused on the 17th Feb 2021 in order to start work on the Multiplayer version.
+
+
+==== Version 1.3 ====
+ - Fixed Bug with Open Doors
+ - Added Gun Game and All The Weapons
+ - Fix Unlock All to unlock all camos Correctly
+ - Fix God Mode randomly Disabling bug
+ - Old but Prestige Selector added (Maybe works, maybe not)
+ - Fixed Max rank bug
+ - Altered Prestige Max to make people 10th 55 first.
 
 
 ==== Version 1.2.3-Unofficial ====
@@ -43,6 +52,6 @@ Updates were paused on the 17th Feb 2021 in order to start work on the Multiplay
 
 
 ## CREDITS
-Gillam,
-Sinful,
-MrFawkes1337
+ - MrFawkes1337
+ - SeriousYT for the BO4 Script Dump
+ - ShiversoftDev for T7 Compiler. Without that GSC on BO4 wouldn't be possible
