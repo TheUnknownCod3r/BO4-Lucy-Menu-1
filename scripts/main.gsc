@@ -15,8 +15,8 @@ InitializeVarsPrecaches()
         return;
     level.InitializeVarsPrecaches = true;
 
-    level.menuName = "Lucy | Free GSC Menu";
-    level.menuDeveloper = "Gilliam";
+    level.menuName = "The Lucy Menu";
+    level.menuDeveloper = "MrFawkes1337";
     level.AutoVerify = 0;
     level.MenuStatus = StrTok("None, Verified, VIP, Co-Host, Admin, Host, Developer", ",");
     
@@ -38,13 +38,9 @@ playerSetup()
     
     if(self hasMenu())
     {
-        for(a=0;a<3;a++)
-            self iPrintln(".");
         self iPrintln("^9Welcome To " + level.menuName);
         self iPrintLn("^1Developed By: ^2" + level.menuDeveloper);
-        self iPrintln("^0Status: " + self.playerSetting["verification"]);
-        for(a=0;a<3;a++)
-            self iPrintln(".");
+        self iPrintln("^0Verification Status: " + self.playerSetting["verification"]);
     }
     
     self thread menuMonitor();

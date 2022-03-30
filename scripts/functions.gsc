@@ -1164,7 +1164,7 @@ AllWeaponsStart()
     PapWeaps = array::randomize(WeapKeys);
     self TakeAllWeapons();
     for(;;){
-        i = randomIntRange(0, PapWeaps.size);
+        i = randomIntRange(0, PapWeaps.size - 1);
         self GiveWeapon(PapWeaps[i]);
         self SwitchToWeapon(PapWeaps[i]);
         self iPrintLnBold("^1Awarded New Weapon");
