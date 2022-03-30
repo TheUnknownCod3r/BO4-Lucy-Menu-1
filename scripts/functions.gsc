@@ -911,7 +911,7 @@ bo4_CamoGiver(Camo)
 
 PSpeed()
 {
-    self endon("disconnect");
+    self endon(#"disconnect");
     
     self.PSpeed = isDefined(self.PSpeed) ? undefined : true;
     if(isDefined(self.PSpeed))
@@ -992,7 +992,7 @@ BO4FreezeBox()
 
 Multijump(currentNum = 0)
 {
-    self endon("disconnect");
+    self endon(#"disconnect");
     self notify("SMulti");
     self.Multijump = isDefined(self.Multijump) ? undefined : true;
     self endon("SMulti");
@@ -1028,7 +1028,7 @@ SuperJump()
 
 AllSuperJump()
 {
-    self endon("disconnect");
+    self endon(#"disconnect");
     while(isDefined(level.SuperJump))
     {
         if(self JumpButtonPressed())
@@ -1048,9 +1048,9 @@ SuperSpeed()
     level.SuperSpeed = isDefined(level.SuperSpeed) ? undefined : true;
 
     if(isDefined(level.SuperSpeed))
-        setDvar("g_speed", 500);
+        setDvar(#"g_speed", 500);
     else
-        setDvar("g_speed", 200);
+        setDvar(#"g_speed", 200);
 }
 
 BO4NoFallDam()
@@ -1123,8 +1123,8 @@ doGunGame()
 }
 GunGame()
 {
-        self endon("death");
-        self endon("disconnect");
+        self endon(#"death");
+        self endon(#"disconnect");
         wait 5;
         keys=GetArrayKeys(level.zombie_weapons);
         weaps = array::randomize(keys);
@@ -1133,7 +1133,7 @@ GunGame()
         self SwitchToWeapon(weaps[0]);
         for(i=1;i <= weaps.size-1;i++)
     {
-        self waittill("zom_kill");
+        self waittill(#"zom_kill");
         self iPrintlnBold("You got a new Weapon! Kill Count: ^1"+i);
         self TakeAllWeapons();
         self GiveWeapon(weaps[i]);
@@ -1157,8 +1157,8 @@ DoAllWeaponsZM()
 
 AllWeaponsStart()
 {
-    self endon("death");
-    self endon("disconnect");
+    self endon(#"death");
+    self endon(#"disconnect");
     wait 3;
     WeapKeys = GetArrayKeys(level.zombie_weapons_upgraded);
     PapWeaps = array::randomize(WeapKeys);
