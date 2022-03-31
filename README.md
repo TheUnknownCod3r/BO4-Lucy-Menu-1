@@ -35,6 +35,7 @@
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
+	  <li><a href="#changelog">Changelog</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
@@ -93,6 +94,44 @@ Contributions by the community are welcome, as are Bug Fixes, and suggestions. I
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+## Changelog
+
+Version 1.3
+<details>
+	<summary>
+		Version 1.3
+	</summary>
+	
+	- Added Gun Game and All The Weapons
+	- Fixed a Rank up issue
+	- Fixed a UI error with Open All Doors / Debris
+	- Altered credits to reflect new Developer
+	- Finished Elixir Menu
+	- Started Map Specific Weapons
+</details>
+
+Version 1.2.3
+<details>
+	<summary>
+		Version 1.2.3 Changes
+	</summary>
+	
+	- Started Elixir Menu
+	- Cleaned up Functions and Revamped Menu Struct
+	- Added Map Selection and Teleport Menu
+</details>
+
+Version 1.2.2
+<details>
+	<summary>
+		Version 1.2.2 Changes
+	</summary>
+	
+	- Fix Weapons Menu
+	- Fix Score Menu erroring on selection
+	- Remove IX Limitation
+	- Added PAP Effects Menu
+</details>
 
 
 <!-- ACKNOWLEDGMENTS -->
