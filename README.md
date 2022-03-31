@@ -1,57 +1,121 @@
-# BO4 LUCY MENU
-Lucy Menu is a free open source Call of Duty Black Ops 4 GSC Mod Menu, It now works on all maps!. Since the menu is open source you can do whatever you want with it!
+<div id="top"></div>
 
-## HOW TO INSTALL
-Step 1 -> Watch and follow along this youtube video to correctly install the injector and learn how to inject: https://youtu.be/AGcMTisF6iA
-
-Step 2 -> Download the files here on github (https://github.com/MrFawkes1337/BO4-Lucy-Menu)
-
-Step 3 -> Launch BO4 and go to zombies then go into a solo Zombies Pre game lobby, Inject the menu with VS Code, and launch the game. :)
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stars][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
 
 
 
-## UPDATES
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/MrFawkes1337/B04-Lucy-Menu">
+    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  </a>
 
+  <h3 align="center">BO4 Lucy Menu</h3>
 
-==== Version 1.3 ====
- - Fixed Bug with Open Doors
- - Added Gun Game and All The Weapons
- - Fix Unlock All to unlock all camos Correctly
- - Fix God Mode randomly Disabling bug
- - Old but Prestige Selector added (Maybe works, maybe not)
- - Fixed Max rank bug
- - Altered Prestige Max to make people 10th 55 first.
-
-
-==== Version 1.2.3-Unofficial ====
- - Added Basic Elixir Menu
- - cleaned up functions
- - new Map Selection and Teleports
- - Fixed menu options for All Clients
-
-==== Version 1.2.2-Unofficial ====
- - Fixed Weapons Menu not working
- - Fixed Score Options causing errors
- - removed IX Limitation
- 
-==== Version 1.2.1 ====
- - Added ability to revive yourself
- - Alter Menu options, changed them to int sliders to make the source code cleaner
- - Added Complete Active Contracts to account menu
- - Various menu improvements and clean ups 
-
-==== Version 1.2 ====
- - Added Unlock All
- - Dark Matter
- - 100 Percenter
- - Added Account Options To Player Menu
- - Can now edit other peoples stats without them needing to download the menu
- - Changed Stats Menu Options To Int Sliders So User Can Pick Their Own Values
- - Removes Issue with Default Project
+  <p align="center">
+	A Free, Open Source, Fully Maintained BO4 GSC Mod Menu for PC.
+    <br />
+    <a href="https://github.com/MrFawkes1337/BO4-Lucy-Menu/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/MrFawkes1337/BO4-Lucy-Menu/issues">Request Feature</a>
+  </p>
+</div>
 
 
 
-## CREDITS
- - MrFawkes1337
- - SeriousYT for the BO4 Script Dump
- - ShiversoftDev for T7 Compiler. Without that GSC on BO4 wouldn't be possible
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
+
+
+
+
+### Prerequisites
+
+To use this Mod Menu, you must have Visual Studio Code, and T7 Compiler.
+You can download T7 Compiler [Here](https://www.github.com/shiversoftdev/t7-compiler/releases/)
+Visual Studio Code can be obtained [Here](https://code.visualstudio.com/)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+
+<!-- USAGE EXAMPLES -->
+## Usage
+	To use The Mod Menu, The following instructions can be used with ease. 
+	
+	1. Download a copy of the Repository by clicking Code> Download Zip
+	
+	2. Load Visual Studio Code, Click File, Open Workspace, and load the Project.workspace in the BO4-Lucy-Menu Folder you downloaded
+	
+	3. Load Black Ops 4, Go into a Zombies private match Lobby, and Inject the Menu. Do NOT inject in a Pre game Lobby, You will crash.
+	
+	4. Once the game loads, You should be able to Aim and Knife to open the menu. 
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+
+<!-- ROADMAP -->
+## Roadmap
+
+- [] Full Map Completion of EE's
+- [] Map Switch with character support
+- [] More Game Modes, Model changer, More features
+- [] Fix Menu Options Disappearing randomly.
+
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+
+<!-- CONTRIBUTING -->
+## Contributing
+
+Contributions by the community are welcome, as are Bug Fixes, and suggestions. If you have an idea You wanna make and add, here's how you can contribute!
+
+1. Fork the Project
+2. Create a new branch called <YourChanges>
+3. Apply and test your changes
+4. If no issues occur, Submit a Pull request, and we'll check everything before accepting!
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
+
+This wouldn't be possible without the following people
+
+* [Shiversoft Dev](https://www.github.com/shiversoftdev/T7-compiler)
+	without T7 Compiler, BO4 GSC Injection wouldn't be possible.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-url]: https://github.com/MrFawkes1337/BO4-Lucy-Menu/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-url]: https://github.com/MrFawkes1337/BO4-Lucy-Menu/network/members
+[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-url]: https://github.com/MrFawkes1337/BO4-Lucy-Menu/stargazers
+[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-url]: https://github.com/MrFawkes1337/BO4-Lucy-Menu/issues
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+[license-url]: https://github.com/MrFawkes1337/BO4-Lucy-Menu/blob/master/LICENSE.txt
