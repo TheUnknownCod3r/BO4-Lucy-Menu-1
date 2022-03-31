@@ -109,13 +109,13 @@ This wouldn't be possible without the following people
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/MrFawkes1337/BO4-Lucy-Menu.svg?style=for-the-badge
 [contributors-url]: https://github.com/MrFawkes1337/BO4-Lucy-Menu/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/MrFawkes1337/BO4-Lucy-Menu.svg?style=for-the-badge
 [forks-url]: https://github.com/MrFawkes1337/BO4-Lucy-Menu/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/MrFawkes1337/BO4-Lucy-Menu.svg?style=for-the-badge
 [stars-url]: https://github.com/MrFawkes1337/BO4-Lucy-Menu/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/MrFawkes1337/BO4-Lucy-Menu.svg?style=for-the-badge
 [issues-url]: https://github.com/MrFawkes1337/BO4-Lucy-Menu/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/MrFawkes1337/BO4-Lucy-Menu.svg?style=for-the-badge
 [license-url]: https://github.com/MrFawkes1337/BO4-Lucy-Menu/blob/master/LICENSE.txt
