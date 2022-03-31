@@ -87,7 +87,7 @@ Visual Studio Code can be obtained [Here](https://code.visualstudio.com/)
 Contributions by the community are welcome, as are Bug Fixes, and suggestions. If you have an idea You wanna make and add, here's how you can contribute!
 
 1. Fork the Project
-2. Create a new branch called <YourChanges>
+2. Create a new branch and in the name, add -add-yourchanges
 3. Apply and test your changes
 4. If no issues occur, Submit a Pull request, and we'll check everything before accepting!
 
